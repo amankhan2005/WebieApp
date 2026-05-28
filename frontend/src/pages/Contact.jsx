@@ -18,7 +18,7 @@ const GS = {
   WebkitTextFillColor: 'transparent',
   backgroundClip: 'text',
 };
-Email
+ 
 // ── Zod schema ────────────────────────────────────────────────────
 const schema = z.object({
   name:    z.string().min(2, 'Please enter your full name'),

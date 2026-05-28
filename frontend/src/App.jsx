@@ -6,15 +6,15 @@ import { ThemeProvider }    from './context/ThemeContext.jsx';
 import { useScrollTheme }   from './hooks/useScrollTheme.js';
 
 // Pages
-import Home              from './pages/Home.jsx';
-import About             from './pages/About.jsx';
-import Services          from './pages/Services.jsx';
-import Portfolio         from './pages/Portfolio.jsx';
-import AutismConsulting  from './pages/AutismConsulting.jsx';
-import Liberia           from './pages/Liberia.jsx';
-import Contact           from './pages/Contact.jsx';
-import PrivacyPolicy      from './pages/PrivacyPolicy.jsx';
-import TermsOfService     from './pages/TermsOfService.jsx';
+import Home              from './pages/Home';
+import About             from './pages/About';
+import Services          from './pages/Services';
+import Portfolio         from './pages/Portfolio';
+import AutismConsulting  from './pages/AutismConsulting';
+import Liberia           from './pages/Liberia';
+import Contact           from './pages/Contact';
+import PrivacyPolicy      from './pages/PrivacyPolicy';
+import TermsOfService     from './pages/TermsOfService';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
