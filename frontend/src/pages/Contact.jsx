@@ -1,5 +1,4 @@
-// src/pages/Contact.jsx
-
+ 
 import { useState }    from 'react';
 import { useForm }     from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -12,13 +11,15 @@ import Button, { ArrowRight } from '../components/ui/Button.jsx';
 import { COMPANY, CONTACT_SERVICES } from '../data/siteData.js';
 import { useTheme }    from '../context/ThemeContext.jsx';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const GS = {
   background: 'linear-gradient(135deg, #00C8A8 0%, #0891b2 100%)',
   WebkitBackgroundClip: 'text',
   WebkitTextFillColor: 'transparent',
   backgroundClip: 'text',
 };
- 
+
 // ── Zod schema ────────────────────────────────────────────────────
 const schema = z.object({
   name:    z.string().min(2, 'Please enter your full name'),
@@ -62,7 +63,6 @@ const Icon = {
 // ── Field component ───────────────────────────────────────────────
 function Field({ label, required, error, children, hint, isDark }) {
   const labelColor = isDark ? '#A1A1AA' : '#4B5563';
-
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
       <label style={{
@@ -100,7 +100,6 @@ function Field({ label, required, error, children, hint, isDark }) {
 function SuccessState({ onReset, isDark }) {
   const headingColor = isDark ? '#F8FAFC' : '#111318';
   const bodyColor    = isDark ? '#71717A' : '#6B7A8D';
-
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
@@ -136,7 +135,6 @@ function SuccessState({ onReset, isDark }) {
           />
         </motion.svg>
       </motion.div>
-
       <h2 style={{
         fontFamily: 'Sora, sans-serif', fontWeight: 700,
         fontSize: '1.75rem', color: headingColor,
@@ -176,9 +174,9 @@ function SuccessState({ onReset, isDark }) {
 
 // ── Contact form ──────────────────────────────────────────────────
 function ContactForm({ isDark }) {
-  const [submitted, setSubmitted]   = useState(false);
+  const [submitted, setSubmitted]     = useState(false);
   const [serverError, setServerError] = useState('');
-  const [focused, setFocused]       = useState('');
+  const [focused, setFocused]         = useState('');
 
   const {
     register,
@@ -190,16 +188,16 @@ function ContactForm({ isDark }) {
   const onSubmit = async (data) => {
     setServerError('');
     try {
-      await axios.post('/api/contact', data);
+      await axios.post(`${API_URL}/api/contact`, data);
       setSubmitted(true);
     } catch {
       setServerError('Something went wrong. Please email us directly at webieapp@gmail.com or try again later.');
     }
   };
 
-  const inputBg     = isDark ? '#18181B' : '#F8FAFB';
-  const inputBorder = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(15,23,42,0.10)';
-  const inputColor  = isDark ? '#F8FAFC' : '#111318';
+  const inputBg        = isDark ? '#18181B' : '#F8FAFB';
+  const inputBorder    = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(15,23,42,0.10)';
+  const inputColor     = isDark ? '#F8FAFC' : '#111318';
   const placeholderStyle = isDark ? '#52525B' : '#94A3B8';
 
   const inputBase = {
@@ -241,7 +239,6 @@ function ContactForm({ isDark }) {
     <form onSubmit={handleSubmit(onSubmit)} noValidate aria-label="Contact form"
       style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
 
-      {/* Name + Email */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }} className="contact-row">
         <Field label="Full Name" required error={errors.name?.message} isDark={isDark}>
           <input {...register('name')} type="text" placeholder="John Smith" autoComplete="name"
@@ -253,7 +250,6 @@ function ContactForm({ isDark }) {
         </Field>
       </div>
 
-      {/* Phone + Company */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }} className="contact-row">
         <Field label="Phone Number" error={errors.phone?.message} hint="Optional — for faster response" isDark={isDark}>
           <input {...register('phone')} type="tel" placeholder="+1 (555) 000-0000" autoComplete="tel"
@@ -265,7 +261,6 @@ function ContactForm({ isDark }) {
         </Field>
       </div>
 
-      {/* Service */}
       <Field label="Service Required" required error={errors.service?.message} isDark={isDark}>
         <select
           {...register('service')}
@@ -291,7 +286,6 @@ function ContactForm({ isDark }) {
         </select>
       </Field>
 
-      {/* Message */}
       <Field label="Tell Us About Your Project" required error={errors.message?.message} isDark={isDark}>
         <textarea
           {...register('message')}
@@ -308,7 +302,6 @@ function ContactForm({ isDark }) {
         />
       </Field>
 
-      {/* Server error */}
       <AnimatePresence>
         {serverError && (
           <motion.div
@@ -329,7 +322,6 @@ function ContactForm({ isDark }) {
         )}
       </AnimatePresence>
 
-      {/* Submit */}
       <Button
         type="submit"
         variant="primary"
@@ -363,8 +355,8 @@ function ContactForm({ isDark }) {
 
 // ── Sidebar ───────────────────────────────────────────────────────
 function InfoSidebar({ isDark }) {
-  const cardBg      = isDark ? '#18181B' : '#FFFFFF';
-  const cardBorder  = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(15,23,42,0.08)';
+  const cardBg       = isDark ? '#18181B' : '#FFFFFF';
+  const cardBorder   = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(15,23,42,0.08)';
   const headingColor = isDark ? '#F8FAFC' : '#111318';
   const bodyColor    = isDark ? '#71717A' : '#6B7A8D';
   const addrColor    = isDark ? '#A1A1AA' : '#6B7A8D';
@@ -373,7 +365,6 @@ function InfoSidebar({ isDark }) {
   return (
     <aside aria-label="Contact information" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
 
-      {/* ABA Consulting CTA */}
       <div style={{
         padding: '20px', borderRadius: '16px',
         background: 'rgba(0,200,168,0.06)',
@@ -389,8 +380,7 @@ function InfoSidebar({ isDark }) {
           </div>
           <p style={{
             fontFamily: 'Sora, sans-serif', fontWeight: 700,
-            fontSize: '13px', color: headingColor,
-            transition: 'color 0.5s ease',
+            fontSize: '13px', color: headingColor, transition: 'color 0.5s ease',
           }}>
             Planning to Launch an ABA Clinic?
           </p>
@@ -407,7 +397,6 @@ function InfoSidebar({ isDark }) {
         </Button>
       </div>
 
-      {/* Response promise */}
       <div style={{
         padding: '20px', borderRadius: '16px',
         background: cardBg, border: `1px solid ${cardBorder}`,
@@ -417,15 +406,13 @@ function InfoSidebar({ isDark }) {
           {Icon.Clock}
           <span style={{
             fontFamily: 'Sora, sans-serif', fontWeight: 700,
-            fontSize: '13px', color: headingColor,
-            transition: 'color 0.5s ease',
+            fontSize: '13px', color: headingColor, transition: 'color 0.5s ease',
           }}>
             Fast Response
           </span>
           <span style={{
             width: '7px', height: '7px', borderRadius: '50%',
-            background: '#4ADE80',
-            boxShadow: '0 0 6px rgba(74,222,128,0.6)',
+            background: '#4ADE80', boxShadow: '0 0 6px rgba(74,222,128,0.6)',
             marginLeft: 'auto', flexShrink: 0,
             animation: 'pulse 2s ease-in-out infinite',
           }} aria-hidden />
@@ -439,16 +426,12 @@ function InfoSidebar({ isDark }) {
         <style>{`@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }`}</style>
       </div>
 
-      {/* Office cards */}
       {Object.values(COMPANY.offices).map((office) => (
-        <div
-          key={office.label}
-          style={{
-            padding: '20px', borderRadius: '16px',
-            background: cardBg, border: `1px solid ${cardBorder}`,
-            transition: 'background 0.5s ease, border-color 0.5s ease',
-          }}
-        >
+        <div key={office.label} style={{
+          padding: '20px', borderRadius: '16px',
+          background: cardBg, border: `1px solid ${cardBorder}`,
+          transition: 'background 0.5s ease, border-color 0.5s ease',
+        }}>
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
             <div style={{
               width: '32px', height: '32px', borderRadius: '8px', flexShrink: 0,
@@ -461,8 +444,7 @@ function InfoSidebar({ isDark }) {
               <p style={{
                 fontFamily: 'Inter, sans-serif', fontSize: '10px', fontWeight: 600,
                 letterSpacing: '0.12em', textTransform: 'uppercase',
-                color: labelColor, marginBottom: '4px',
-                transition: 'color 0.5s ease',
+                color: labelColor, marginBottom: '4px', transition: 'color 0.5s ease',
               }}>
                 {office.label}
               </p>
@@ -478,7 +460,6 @@ function InfoSidebar({ isDark }) {
         </div>
       ))}
 
-      {/* Email */}
       <div style={{
         padding: '20px', borderRadius: '16px',
         background: cardBg, border: `1px solid ${cardBorder}`,
@@ -487,11 +468,11 @@ function InfoSidebar({ isDark }) {
         <p style={{
           fontFamily: 'Inter, sans-serif', fontSize: '10px', fontWeight: 600,
           letterSpacing: '0.12em', textTransform: 'uppercase',
-          color: labelColor, marginBottom: '8px',
-          transition: 'color 0.5s ease',
+          color: labelColor, marginBottom: '8px', transition: 'color 0.5s ease',
         }}>
           Email
         </p>
+        
         <a
           href={`mailto:${COMPANY.email}`}
           style={{
@@ -514,10 +495,10 @@ function InfoSidebar({ isDark }) {
 export default function Contact() {
   const { isDark } = useTheme();
 
-  const sectionBg    = isDark ? '#09090B' : '#F8FAFB';
-  const headingColor = isDark ? '#F8FAFC' : '#111318';
-  const bodyColor    = isDark ? '#71717A' : '#6B7A8D';
-  const formCardBg   = isDark ? '#111113' : '#FFFFFF';
+  const sectionBg      = isDark ? '#09090B' : '#F8FAFB';
+  const headingColor   = isDark ? '#F8FAFC' : '#111318';
+  const bodyColor      = isDark ? '#71717A' : '#6B7A8D';
+  const formCardBg     = isDark ? '#111113' : '#FFFFFF';
   const formCardBorder = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(15,23,42,0.08)';
 
   return (
@@ -531,7 +512,6 @@ export default function Contact() {
         <meta property="og:url" content="https://webieapp.com/contact" />
       </Helmet>
 
-      {/* ── Hero ── */}
       <section
         aria-label="Contact hero"
         style={{
@@ -541,7 +521,6 @@ export default function Contact() {
           background: '#666666',
         }}
       >
-        {/* Background image */}
         <div aria-hidden style={{
           position: 'absolute', inset: 0,
           backgroundImage: 'url(/about/about.jpg)',
@@ -549,15 +528,12 @@ export default function Contact() {
           backgroundPosition: 'center',
           opacity: isDark ? 0.18 : 0.22,
         }} />
-
-        {/* Teal glow */}
         <div aria-hidden style={{
           position: 'absolute', top: '40%', left: '35%',
           transform: 'translate(-50%, -50%)',
           width: '700px', height: '500px', pointerEvents: 'none',
           background: 'radial-gradient(ellipse, rgba(0,200,168,0.12) 0%, transparent 65%)',
         }} />
-
         <div className="container-xl" style={{ position: 'relative', zIndex: 10 }}>
           <motion.div
             initial={{ opacity: 0, y: 28 }}
@@ -575,7 +551,6 @@ export default function Contact() {
                 Get in Touch
               </span>
             </div>
-
             <h1 style={{
               fontFamily: 'Sora, sans-serif', fontWeight: 800,
               fontSize: 'clamp(2.8rem, 6vw, 5.2rem)',
@@ -586,7 +561,6 @@ export default function Contact() {
               <br />
               <span style={GS}>Let's Build It.</span>
             </h1>
-
             <p style={{
               fontFamily: 'Inter, sans-serif', fontSize: '1.1rem',
               color: 'rgba(255,255,255,0.60)', lineHeight: 1.75,
@@ -598,7 +572,6 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* ── Form section ── */}
       <section
         aria-label="Contact form"
         className="section"
@@ -611,7 +584,6 @@ export default function Contact() {
             gap: '48px', alignItems: 'start',
           }} className="contact-layout">
 
-            {/* Form card — 2/3 */}
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
@@ -632,8 +604,7 @@ export default function Contact() {
                 </h2>
                 <p style={{
                   fontFamily: 'Inter, sans-serif', fontSize: '13px',
-                  color: bodyColor, marginBottom: '32px',
-                  transition: 'color 0.5s ease',
+                  color: bodyColor, marginBottom: '32px', transition: 'color 0.5s ease',
                 }}>
                   Fill in the details below and we'll get back to you within 24 hours.
                 </p>
@@ -641,7 +612,6 @@ export default function Contact() {
               </div>
             </motion.div>
 
-            {/* Sidebar — 1/3 */}
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
@@ -656,9 +626,7 @@ export default function Contact() {
 
       <style>{`
         @media (max-width: 860px) {
-          .contact-layout {
-            grid-template-columns: 1fr !important;
-          }
+          .contact-layout { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </PageLayout>

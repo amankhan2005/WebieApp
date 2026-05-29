@@ -1,14 +1,13 @@
-// server/models/ContactLead.js
+// models/ContactLead.js
 
 const mongoose = require('mongoose');
 
 const contactLeadSchema = new mongoose.Schema(
   {
-    // Core contact fields
     name:    { type: String, required: true, trim: true, maxlength: 120 },
     email:   { type: String, required: true, trim: true, lowercase: true, maxlength: 254 },
-    phone:   { type: String, trim: true,  maxlength: 30,  default: '' },
-    company: { type: String, trim: true,  maxlength: 120, default: '' },
+    phone:   { type: String, trim: true, maxlength: 30,  default: '' },
+    company: { type: String, trim: true, maxlength: 120, default: '' },
     service: {
       type: String,
       required: true,
@@ -32,9 +31,9 @@ const contactLeadSchema = new mongoose.Schema(
     ipAddress:  { type: String, default: '' },
 
     // Classification
-    isAutism:   { type: Boolean, default: false },
-    priority:   { type: String, enum: ['HIGH', 'MEDIUM', 'LOW'], default: 'MEDIUM' },
-    leadScore:  { type: Number, min: 0, max: 100, default: 0 },
+    isAutism:  { type: Boolean, default: false },
+    priority:  { type: String, enum: ['HIGH', 'MEDIUM', 'LOW'], default: 'MEDIUM' },
+    leadScore: { type: Number, min: 0, max: 100, default: 0 },
 
     // Workflow
     status: {
@@ -46,12 +45,11 @@ const contactLeadSchema = new mongoose.Schema(
     repliedAt: { type: Date },
   },
   {
-    timestamps: true, // adds createdAt, updatedAt
+    timestamps: true,
     toJSON:     { virtuals: true },
   }
 );
 
-// Index for common queries
 contactLeadSchema.index({ email: 1 });
 contactLeadSchema.index({ status: 1, createdAt: -1 });
 contactLeadSchema.index({ priority: 1, createdAt: -1 });

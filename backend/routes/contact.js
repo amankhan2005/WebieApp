@@ -1,7 +1,8 @@
-// server/routes/contact.js
+// routes/contact.js
+
 const express  = require('express');
 const router   = express.Router();
-const { submitContact } = require('../controllers/contactController');
+const { submitContact }  = require('../controllers/contactController');
 const { contactLimiter } = require('../middleware/rateLimiter');
 
 // POST /api/contact

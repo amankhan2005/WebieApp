@@ -394,3 +394,119 @@ body {
 .marquee-track:hover {
   animation-play-state: paused;
 }
+
+
+/* ═══════════════════════════════════════════════════════════
+   MOBILE ENHANCEMENTS — max-width: 640px
+   Desktop styles are completely untouched.
+   ═══════════════════════════════════════════════════════════ */
+
+@media (max-width: 640px) {
+
+  /* ── TYPOGRAPHY SCALE ─────────────────────────────────── */
+  h1 { font-size: clamp(2.2rem, 9vw, 3rem) !important; line-height: 1.07 !important; }
+  h2 { font-size: clamp(1.6rem, 6vw, 2.2rem) !important; }
+  h3 { font-size: clamp(1.15rem, 4.5vw, 1.4rem) !important; }
+
+  /* ── SECTION SPACING ─────────────────────────────────── */
+  .section { padding-top: 3.5rem !important; padding-bottom: 3.5rem !important; }
+
+  /* ── CONTAINER PADDING ───────────────────────────────── */
+  .container-xl {
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+  }
+
+  /* ── HERO FIXES ──────────────────────────────────────── */
+  [data-scroll-section="hero"] {
+    min-height: 100dvh;           /* use dvh so mobile browser chrome is accounted for */
+    padding-top: 5rem !important;
+    padding-bottom: 3rem !important;
+  }
+
+  /* ── CARDS — full width on mobile ───────────────────── */
+  .card-premium {
+    border-radius: 12px !important;
+  }
+
+  /* ── ACCENT LINE — smaller on mobile ────────────────── */
+  .accent-line {
+    font-size: 0.65rem !important;
+    gap: 8px !important;
+  }
+  .accent-line::before { width: 20px !important; }
+
+  /* ── TAG / BADGE ─────────────────────────────────────── */
+  .tag-brand,
+  .tag-neutral {
+    font-size: 0.625rem !important;
+    padding: 3px 10px !important;
+  }
+
+  /* ── MARQUEE — slightly slower on mobile ─────────────── */
+  .marquee-track { animation-duration: 28s !important; }
+
+  /* ── SCROLLBAR — hide on mobile (saves space) ────────── */
+  ::-webkit-scrollbar { width: 0 !important; }
+
+  /* ── STATS GRID — 2×2 grid instead of a row ─────────── */
+  .stats-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1px !important;
+    background: rgba(15, 23, 42, 0.07) !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+  }
+  [data-theme="dark"] .stats-grid {
+    background: rgba(255, 255, 255, 0.06) !important;
+  }
+  .stats-grid > div {
+    background: var(--surface) !important;
+    padding: 20px 10px !important;
+    text-align: center !important;
+  }
+  [data-theme="dark"] .stats-grid > div {
+    background: #09090B !important;
+  }
+  .stat-divider { display: none !important; }
+
+  /* ── CTA BUTTONS — stacked, full width ───────────────── */
+  .hero-ctas {
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 300px !important;
+    gap: 12px !important;
+  }
+  .hero-ctas a,
+  .hero-ctas button {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 15px 20px !important;
+    font-size: 0.95rem !important;
+  }
+
+  /* ── FOCUS RING — larger tap target feel ─────────────── */
+  :focus-visible { outline-offset: 5px !important; }
+
+  /* ── SECTION DIVIDER — shorter fade ─────────────────── */
+  .section-divider {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(15,23,42,0.07) 20%,
+      rgba(15,23,42,0.07) 80%,
+      transparent
+    ) !important;
+  }
+}
+
+/* ── SAFE AREA INSETS (iPhone notch / home bar) ──────────── */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  @media (max-width: 640px) {
+    body { padding-bottom: env(safe-area-inset-bottom); }
+    [data-scroll-section="hero"] {
+      padding-top: calc(5rem + env(safe-area-inset-top)) !important;
+    }
+  }
+}

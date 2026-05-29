@@ -1,25 +1,22 @@
-// server/app.js
+// app.js
 // Express application setup.
-// Middleware order matters — security first, then logging, then routes, then errors.
+// Middleware order: security → CORS → parsing → logging → rate limit → routes → errors.
 
-const express         = require('express');
-const cors            = require('cors');
-const helmet          = require('helmet');
-const morgan          = require('morgan');
-const compression     = require('compression');
-const mongoSanitize   = require('express-mongo-sanitize');
-const ENV             = require('./config/env');
-const routes          = require('./routes/index');
-const { apiLimiter }  = require('./middleware/rateLimiter');
+const express        = require('express');
+const cors           = require('cors');
+const helmet         = require('helmet');
+const morgan         = require('morgan');
+const ENV            = require('./config/env');
+const routes         = require('./routes/index');
+const { apiLimiter } = require('./middleware/rateLimiter');
 const { notFound, errorHandler } = require('./middleware/errorHandler');
 
 const app = express();
 
 // ── 1. Security headers ───────────────────────────────────────────
-// Helmet sets secure HTTP headers
 app.use(helmet({
   crossOriginResourcePolicy: { policy: 'cross-origin' },
-  contentSecurityPolicy: false, // disabled — frontend handles its own CSP
+  contentSecurityPolicy: false,
 }));
 
 // ── 2. CORS ───────────────────────────────────────────────────────
@@ -33,15 +30,14 @@ const ALLOWED_ORIGINS = [
 
 app.use(cors({
   origin: (origin, callback) => {
-    // Allow requests with no origin (mobile apps, curl, Postman)
     if (!origin || ALLOWED_ORIGINS.includes(origin)) {
       callback(null, true);
     } else {
       callback(new Error(`CORS: Origin ${origin} not allowed`));
     }
   },
-  methods:          ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
-  allowedHeaders:   ['Content-Type', 'Authorization', 'x-admin-key'],
+  methods:          ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders:   ['Content-Type'],
   credentials:      true,
   optionsSuccessStatus: 200,
 }));
@@ -50,49 +46,37 @@ app.use(cors({
 app.use(express.json({ limit: '16kb' }));
 app.use(express.urlencoded({ extended: true, limit: '16kb' }));
 
-// ── 4. MongoDB query sanitization ────────────────────────────────
-// Strips $ and . from inputs to prevent NoSQL injection
-app.use(mongoSanitize({
-  replaceWith: '_',
-  onSanitize:  ({ req, key }) => {
-    console.warn(`[SECURITY] Sanitized field '${key}' in request from ${req.ip}`);
-  },
-}));
-
-// ── 5. Response compression ───────────────────────────────────────
-app.use(compression());
-
-// ── 6. Request logging ────────────────────────────────────────────
+// ── 4. Request logging ────────────────────────────────────────────
 if (ENV.IS_DEV) {
   app.use(morgan('dev'));
 } else {
-  // Production: structured log (timestamp, method, url, status, response-time)
   app.use(morgan(':date[iso] :method :url :status :response-time ms'));
 }
 
-// ── 7. Trust proxy (for correct IP behind Nginx/load balancer) ───
+// ── 5. Trust proxy (correct IP behind Nginx/load balancer) ───────
 app.set('trust proxy', 1);
 
-// ── 8. Global rate limiter ────────────────────────────────────────
+// ── 6. Global rate limiter ────────────────────────────────────────
 app.use('/api', apiLimiter);
 
-// ── 9. API routes ─────────────────────────────────────────────────
+// ── 7. API routes ─────────────────────────────────────────────────
 app.use('/api', routes);
 
-// ── 10. Root route ────────────────────────────────────────────────
+// ── 8. Root ───────────────────────────────────────────────────────
 app.get('/', (req, res) => {
   res.json({
     name:    'WebieApp Solutions LLC — API',
-    version: '1.0.0',
+    version: '2.0.0',
     status:  'running',
     docs:    '/api/health',
+    routes:  ['POST /api/contact', 'GET /api/health'],
   });
 });
 
-// ── 11. 404 handler ───────────────────────────────────────────────
+// ── 9. 404 ────────────────────────────────────────────────────────
 app.use(notFound);
 
-// ── 12. Global error handler (MUST be last) ───────────────────────
+// ── 10. Error handler (must be last) ─────────────────────────────
 app.use(errorHandler);
 
 module.exports = app;

@@ -9,10 +9,7 @@ node_modules/
 .env.production.local
 
 # Build files
-dist/
-build/
-.next/
-out/
+ 
 
 # Logs
 logs
