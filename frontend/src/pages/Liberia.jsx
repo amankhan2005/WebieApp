@@ -166,10 +166,10 @@ function CaseStudyCard({ project, index }) {
   const { isDark } = useTheme();
   const isEven = index % 2 === 0;
 
-  const cardBg       = isDark ? '#18181B' : '#FFFFFF';
+  const cardBg       = isDark ? '#1E2A3A' : '#FFFFFF';
   const cardBorder   = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(15,23,42,0.08)';
   const headingColor = isDark ? '#F8FAFC' : '#111318';
-  const bodyColor    = isDark ? '#71717A' : '#6B7A8D';
+  const bodyColor    = isDark ? '#94A3B8' : '#6B7A8D';
   const subHeading   = isDark ? '#A1A1AA' : '#64748B';
   const techBg       = isDark ? 'rgba(255,255,255,0.05)' : '#F3F5F8';
   const techBorder   = isDark ? 'rgba(255,255,255,0.08)' : '#E2E8F0';
@@ -249,7 +249,7 @@ function CaseStudyCard({ project, index }) {
               fontFamily: 'Inter, sans-serif', fontSize: '10px',
               fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase',
               padding: '4px 12px', borderRadius: '9999px',
-              background: isDark ? 'rgba(9,9,11,0.80)' : 'rgba(255,255,255,0.88)',
+              background: isDark ? 'rgba(18,28,40,0.88)' : 'rgba(255,255,255,0.88)',
               backdropFilter: 'blur(8px)',
               border: `1px solid ${catBorder || 'rgba(0,200,168,0.20)'}`,
               color: catColor,
@@ -262,7 +262,7 @@ function CaseStudyCard({ project, index }) {
             <span style={{
               fontFamily: 'Inter, sans-serif', fontSize: '10px',
               color: yearColor,
-              background: isDark ? 'rgba(9,9,11,0.80)' : 'rgba(255,255,255,0.88)',
+              background: isDark ? 'rgba(18,28,40,0.88)' : 'rgba(255,255,255,0.88)',
               backdropFilter: 'blur(8px)',
               padding: '4px 10px', borderRadius: '9999px',
               border: `1px solid ${yearBorder}`,
@@ -438,22 +438,36 @@ function CaseStudyCard({ project, index }) {
 export default function Liberia() {
   const { isDark } = useTheme();
 
-  const sectionBg    = isDark ? '#09090B' : '#F8FAFB';
-  const sectionBgAlt = isDark ? '#09090B' : '#FFFFFF';
+  const sectionBg    = isDark ? '#111823' : '#F8FAFB';
+  const sectionBgAlt = isDark ? '#111823' : '#FFFFFF';
   const headingColor = isDark ? '#F8FAFC' : '#111318';
-  const bodyColor    = isDark ? '#71717A' : '#6B7A8D';
-  const cardBg       = isDark ? '#18181B' : '#FFFFFF';
+  const bodyColor    = isDark ? '#94A3B8' : '#6B7A8D';
+  const cardBg       = isDark ? '#1E2A3A' : '#FFFFFF';
   const cardBorder   = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(15,23,42,0.08)';
-  const iconBg       = isDark ? '#27272A' : '#F0FDF9';
+  const iconBg       = isDark ? '#1F2E3F' : '#F0FDF9';
   const iconBorder   = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,200,168,0.15)';
   const metricBorder = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(15,23,42,0.07)';
 
   return (
     <PageLayout>
-      <Helmet>
-        <title>WebieApp in Liberia — Digital Solutions for West Africa</title>
-        <meta name="description" content="WebieApp Solutions LLC delivers premium digital solutions to Liberia — SafeRide Delivery platform, property investment systems, and government digital transformation in West Africa." />
+            <Helmet>
+        <title>Liberia Digital Services | WebieApp Solutions LLC</title>
+        <meta name="description" content="WebieApp Solutions LLC provides specialized digital services for Liberia — government portals, business websites, civic platforms, and digital transformation solutions for West African institutions." />
+        <meta name="keywords" content="Liberia digital services, Liberia web development, West Africa digital agency, Liberian government portal, Liberia technology" />
+        <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://webieapp.com/liberia" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="WebieApp Solutions LLC" />
+        <meta property="og:title" content="Liberia Digital Services — WebieApp Solutions LLC" />
+        <meta property="og:description" content="Specialized digital services for Liberia and West Africa — government portals, business websites, and civic platforms." />
+        <meta property="og:url" content="https://webieapp.com/liberia" />
+        <meta property="og:image" content="https://webieapp.com/og-image.png" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Liberia Digital Services — WebieApp" />
+        <meta name="twitter:description" content="Specialized digital services for Liberia and West Africa — government portals, business websites, and civic platforms." />
+        <meta name="twitter:image" content="https://webieapp.com/og-image.png" />
       </Helmet>
 
       {/* ── Hero ── */}
@@ -463,7 +477,7 @@ export default function Liberia() {
           position: 'relative',
           paddingTop: '144px', paddingBottom: '120px',
           overflow: 'hidden',
-          background: '#666666',
+          background: isDark ? '#1A2535' : '#2B3D52',
         }}
       >
         {/* Background image */}

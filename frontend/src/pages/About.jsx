@@ -21,7 +21,6 @@ const GS = {
   backgroundClip: 'text',
 };
 
-// ── Data ──────────────────────────────────────────────────
 const VALUES = [
   { title: 'Precision',   desc: 'We obsess over every detail — from system architecture to the last pixel. Mediocrity is not in our vocabulary.' },
   { title: 'Integrity',   desc: 'Honest timelines, transparent pricing, zero surprises. We say what we do and do what we say — always.' },
@@ -68,14 +67,12 @@ const VALUE_ICONS = {
   ),
 };
 
- 
-
 const WHY_TRUST = [
-  { label: 'US LLC',        value: 'Legally registered in Kentucky — full contractual accountability under US law.' },
-  { label: 'No Templates',  value: 'Every deliverable is custom-built. We\'ve never shipped a template or a theme-based site.' },
-  { label: 'HIPAA-Aware',   value: 'Healthcare development follows HIPAA-aware practices, protecting your patients and your business.' },
-  { label: 'Transparency',  value: 'Weekly project updates, shared dashboards, and direct engineer access — always.' },
-   { label: 'Post-Launch',   value: 'We don\'t disappear after launch. Ongoing support, analytics, and partnerships are standard.' },
+  { label: 'US LLC',       value: 'Legally registered in Kentucky — full contractual accountability under US law.' },
+  { label: 'No Templates', value: 'Every deliverable is custom-built. We\'ve never shipped a template or a theme-based site.' },
+  { label: 'HIPAA-Aware',  value: 'Healthcare development follows HIPAA-aware practices, protecting your patients and your business.' },
+  { label: 'Transparency', value: 'Weekly project updates, shared dashboards, and direct engineer access — always.' },
+  { label: 'Post-Launch',  value: 'We don\'t disappear after launch. Ongoing support, analytics, and partnerships are standard.' },
 ];
 
 function SectionEyebrow({ children }) {
@@ -94,11 +91,8 @@ function SectionEyebrow({ children }) {
 // ── HeroSection ───────────────────────────────────────────
 function HeroSection() {
   const { isDark } = useTheme();
-  const headingColor = isDark ? '#F8FAFC' : '#111318';
-  const bodyColor    = isDark ? '#71717A' : 'rgba(255,255,255,0.75)';
-  const chipBg       = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.15)';
-  const chipBorder   = isDark ? 'rgba(255,255,255,0.10)' : 'rgba(255,255,255,0.25)';
-  const chipColor    = '#FFFFFF';
+  const chipBg     = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.15)';
+  const chipBorder = isDark ? 'rgba(255,255,255,0.10)' : 'rgba(255,255,255,0.25)';
 
   return (
     <section
@@ -107,27 +101,24 @@ function HeroSection() {
         position: 'relative',
         paddingTop: '144px', paddingBottom: '120px',
         overflow: 'hidden',
-        // bg image with dark overlay
-        background: '#666666',
+        background: isDark ? '#1A2535' : '#2C3E55',
       }}
     >
-      {/* Background image */}
+      {/* Background image — lighter opacity so text is always readable */}
       <div aria-hidden style={{
         position: 'absolute', inset: 0,
         backgroundImage: 'url(/about/about.jpg)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        opacity: isDark ? 0.18 : 0.22,
+        opacity: isDark ? 0.12 : 0.16,
       }} />
-
-      
 
       {/* Teal glow */}
       <div aria-hidden style={{
         position: 'absolute', top: '40%', left: '35%',
         transform: 'translate(-50%, -50%)',
         width: '700px', height: '500px', pointerEvents: 'none',
-        background: 'radial-gradient(ellipse, rgba(0,200,168,0.12) 0%, transparent 65%)',
+        background: 'radial-gradient(ellipse, rgba(0,200,168,0.10) 0%, transparent 65%)',
       }} />
 
       <div className="container-xl" style={{ position: 'relative', zIndex: 10 }}>
@@ -156,7 +147,7 @@ function HeroSection() {
 
           <p style={{
             fontFamily: 'Inter, sans-serif', fontSize: '1.1rem',
-            color: 'rgba(255,255,255,0.60)', lineHeight: 1.75,
+            color: 'rgba(255,255,255,0.65)', lineHeight: 1.75,
             maxWidth: '580px', marginBottom: '40px',
           }}>
             WebieApp Solutions LLC is a US-registered technology and digital consultancy delivering enterprise-grade digital products, SaaS platforms, and specialized Autism & ABA business consulting to clients across the globe.
@@ -183,7 +174,7 @@ function HeroSection() {
             <div key={i} style={{
               display: 'inline-flex', alignItems: 'center', gap: '7px',
               fontFamily: 'Inter, sans-serif', fontSize: '12px',
-              fontWeight: 500, color: chipColor,
+              fontWeight: 500, color: '#FFFFFF',
               background: chipBg, border: `1px solid ${chipBorder}`,
               padding: '7px 16px', borderRadius: '9999px',
               backdropFilter: 'blur(8px)',
@@ -201,13 +192,14 @@ function HeroSection() {
 // ── ValuesSection ──────────────────────────────────────────
 function ValuesSection() {
   const { isDark } = useTheme();
-  const sectionBg    = isDark ? '#09090B' : '#F8FAFB';
-  const headingColor = isDark ? '#F8FAFC' : '#111318';
-  const bodyColor    = isDark ? '#71717A' : '#6B7A8D';
-  const cardBg       = isDark ? '#18181B' : '#FFFFFF';
-  const cardBorder   = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(15,23,42,0.08)';
-  const iconBg       = isDark ? '#27272A' : '#F0FDF9';
-  const iconBorder   = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,200,168,0.15)';
+  // Lighter dark backgrounds
+  const sectionBg  = isDark ? '#18202E' : '#F8FAFB';
+  const headingColor = isDark ? '#F1F5F9' : '#111318';
+  const bodyColor    = isDark ? '#94A3B8' : '#6B7A8D';
+  const cardBg       = isDark ? '#1E293B' : '#FFFFFF';
+  const cardBorder   = isDark ? 'rgba(255,255,255,0.07)' : 'rgba(15,23,42,0.08)';
+  const iconBg       = isDark ? 'rgba(0,200,168,0.08)' : '#F0FDF9';
+  const iconBorder   = isDark ? 'rgba(0,200,168,0.15)' : 'rgba(0,200,168,0.15)';
 
   return (
     <section
@@ -216,8 +208,6 @@ function ValuesSection() {
       style={{ background: sectionBg, transition: 'background 0.5s ease' }}
     >
       <div className="container-xl">
-
-        {/* Two-column header + image layout */}
         <div className="grid lg:grid-cols-2 gap-16 items-center" style={{ marginBottom: '64px' }}>
           <motion.div {...fadeUp(0)}>
             <SectionEyebrow>Our Values</SectionEyebrow>
@@ -241,29 +231,22 @@ function ValuesSection() {
             </p>
           </motion.div>
 
-          {/* Image 1 */}
           <motion.div {...fadeUp(0.15)} style={{ position: 'relative' }}>
             <div style={{
               borderRadius: '20px', overflow: 'hidden',
               aspectRatio: '4/3',
-              background: isDark ? '#18181B' : '#E8F4F1',
+              background: isDark ? '#1E293B' : '#E8F4F1',
               border: `1px solid ${cardBorder}`,
             }}>
               <img
                 src="/about/team.jpeg"
                 alt="WebieApp team at work"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                onError={e => {
-                  e.currentTarget.style.display = 'none';
-                  e.currentTarget.parentElement.style.display = 'flex';
-                  e.currentTarget.parentElement.style.alignItems = 'center';
-                  e.currentTarget.parentElement.style.justifyContent = 'center';
-                }}
+                onError={e => { e.currentTarget.style.display = 'none'; }}
               />
-              {/* Overlay badge */}
               <div style={{
                 position: 'absolute', bottom: '20px', left: '20px',
-                background: isDark ? 'rgba(9,9,11,0.85)' : 'rgba(255,255,255,0.90)',
+                background: isDark ? 'rgba(18,32,46,0.88)' : 'rgba(255,255,255,0.90)',
                 backdropFilter: 'blur(8px)',
                 border: `1px solid ${isDark ? 'rgba(255,255,255,0.08)' : 'rgba(15,23,42,0.08)'}`,
                 borderRadius: '12px', padding: '12px 16px',
@@ -275,7 +258,6 @@ function ValuesSection() {
           </motion.div>
         </div>
 
-        {/* Cards grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {VALUES.map((v, i) => (
             <motion.div
@@ -293,8 +275,8 @@ function ValuesSection() {
               }}
               onMouseEnter={e => {
                 e.currentTarget.style.transform = 'translateY(-3px)';
-                e.currentTarget.style.borderColor = 'rgba(0,200,168,0.25)';
-                e.currentTarget.style.boxShadow = isDark ? '0 0 0 1px rgba(0,200,168,0.1)' : '0 8px 24px rgba(0,0,0,0.08)';
+                e.currentTarget.style.borderColor = 'rgba(0,200,168,0.3)';
+                e.currentTarget.style.boxShadow = isDark ? '0 0 0 1px rgba(0,200,168,0.1), 0 8px 24px rgba(0,0,0,0.2)' : '0 8px 24px rgba(0,0,0,0.08)';
               }}
               onMouseLeave={e => {
                 e.currentTarget.style.transform = 'translateY(0)';
@@ -306,7 +288,7 @@ function ValuesSection() {
                 width: '40px', height: '40px', borderRadius: '10px',
                 background: iconBg, border: `1px solid ${iconBorder}`,
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                marginBottom: '16px', transition: 'background 0.5s ease',
+                marginBottom: '16px',
               }}>
                 {VALUE_ICONS[v.title]}
               </div>
@@ -333,17 +315,15 @@ function ValuesSection() {
   );
 }
 
-
-
 // ── OfficesSection ─────────────────────────────────────────
 function OfficesSection() {
   const { isDark } = useTheme();
-  const sectionBg    = isDark ? '#09090B' : '#F8FAFB';
-  const headingColor = isDark ? '#F8FAFC' : '#111318';
-  const bodyColor    = isDark ? '#71717A' : '#6B7A8D';
-  const cardBg       = isDark ? '#18181B' : '#FFFFFF';
-  const cardBorder   = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(15,23,42,0.08)';
-  const addrColor    = isDark ? '#A1A1AA' : '#6B7A8D';
+  const sectionBg    = isDark ? '#131C28' : '#F8FAFB';
+  const headingColor = isDark ? '#F1F5F9' : '#111318';
+  const bodyColor    = isDark ? '#94A3B8' : '#6B7A8D';
+  const cardBg       = isDark ? '#1E293B' : '#FFFFFF';
+  const cardBorder   = isDark ? 'rgba(255,255,255,0.07)' : 'rgba(15,23,42,0.08)';
+  const addrColor    = isDark ? '#CBD5E1' : '#6B7A8D';
 
   const offices = [
     {
@@ -365,10 +345,7 @@ function OfficesSection() {
       style={{ background: sectionBg, transition: 'background 0.5s ease' }}
     >
       <div className="container-xl">
-
-        {/* Two-column layout — heading left, image right */}
         <div className="grid lg:grid-cols-2 gap-16 items-center" style={{ marginBottom: '64px' }}>
-
           <motion.div {...fadeUp(0)}>
             <SectionEyebrow>Global Presence</SectionEyebrow>
             <h2 id="offices-h" style={{
@@ -391,12 +368,11 @@ function OfficesSection() {
             </p>
           </motion.div>
 
-          {/* Image 2 */}
           <motion.div {...fadeUp(0.15)} style={{ position: 'relative' }}>
             <div style={{
               borderRadius: '20px', overflow: 'hidden',
               aspectRatio: '4/3',
-              background: isDark ? '#18181B' : '#E8F4F1',
+              background: isDark ? '#1E293B' : '#E8F4F1',
               border: `1px solid ${cardBorder}`,
             }}>
               <img
@@ -405,10 +381,9 @@ function OfficesSection() {
                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                 onError={e => { e.currentTarget.style.display = 'none'; }}
               />
-              {/* Overlay badge */}
               <div style={{
                 position: 'absolute', bottom: '20px', right: '20px',
-                background: isDark ? 'rgba(9,9,11,0.85)' : 'rgba(255,255,255,0.90)',
+                background: isDark ? 'rgba(18,28,40,0.88)' : 'rgba(255,255,255,0.90)',
                 backdropFilter: 'blur(8px)',
                 border: `1px solid ${isDark ? 'rgba(255,255,255,0.08)' : 'rgba(15,23,42,0.08)'}`,
                 borderRadius: '12px', padding: '12px 16px',
@@ -420,7 +395,6 @@ function OfficesSection() {
           </motion.div>
         </div>
 
-        {/* Office cards */}
         <div className="grid md:grid-cols-2 gap-6" style={{ maxWidth: '720px', margin: '0 auto' }}>
           {offices.map((office, i) => (
             <motion.div
@@ -437,14 +411,13 @@ function OfficesSection() {
               }}
               onMouseEnter={e => {
                 e.currentTarget.style.transform = 'translateY(-3px)';
-                e.currentTarget.style.borderColor = 'rgba(0,200,168,0.25)';
+                e.currentTarget.style.borderColor = 'rgba(0,200,168,0.3)';
               }}
               onMouseLeave={e => {
                 e.currentTarget.style.transform = 'translateY(0)';
                 e.currentTarget.style.borderColor = cardBorder;
               }}
             >
-              {/* Flag icon replacement — SVG location pin with flag initial */}
               <div style={{
                 width: '48px', height: '48px', borderRadius: '12px', marginBottom: '16px',
                 background: 'rgba(0,200,168,0.08)',
@@ -493,7 +466,6 @@ function OfficesSection() {
             </motion.div>
           ))}
         </div>
-
       </div>
     </section>
   );
@@ -502,11 +474,11 @@ function OfficesSection() {
 // ── WhyTrustSection ────────────────────────────────────────
 function WhyTrustSection() {
   const { isDark } = useTheme();
-  const sectionBg    = isDark ? '#09090B' : '#FFFFFF';
-  const headingColor = isDark ? '#F8FAFC' : '#111318';
-  const bodyColor    = isDark ? '#71717A' : '#6B7A8D';
-  const cardBg       = isDark ? '#18181B' : '#FFFFFF';
-  const cardBorder   = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(15,23,42,0.08)';
+  const sectionBg    = isDark ? '#18202E' : '#FFFFFF';
+  const headingColor = isDark ? '#F1F5F9' : '#111318';
+  const bodyColor    = isDark ? '#94A3B8' : '#6B7A8D';
+  const cardBg       = isDark ? '#1E293B' : '#FFFFFF';
+  const cardBorder   = isDark ? 'rgba(255,255,255,0.07)' : 'rgba(15,23,42,0.08)';
 
   return (
     <section
@@ -558,13 +530,12 @@ function WhyTrustSection() {
                   boxShadow: isDark ? 'none' : '0 1px 3px rgba(0,0,0,0.05)',
                   transition: 'background 0.5s ease, border-color 0.3s ease',
                 }}
-                onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(0,200,168,0.25)'; }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(0,200,168,0.3)'; }}
                 onMouseLeave={e => { e.currentTarget.style.borderColor = cardBorder; }}
               >
                 <div style={{
                   width: '3px', borderRadius: '9999px',
-                  background: '#00C8A8', flexShrink: 0,
-                  minHeight: '20px',
+                  background: '#00C8A8', flexShrink: 0, minHeight: '20px',
                 }} />
                 <div>
                   <div style={{
@@ -597,17 +568,32 @@ export default function About() {
   return (
     <PageLayout>
       <Helmet>
-        <title>About WebieApp Solutions LLC — US-Registered Premium Technology Agency</title>
-        <meta name="description" content="Learn about WebieApp Solutions LLC — a US-registered premium technology agency founded in 2017. Offices in Kentucky USA and Lucknow India. Serving clients in 12+ countries." />
+        {/* ── Primary SEO ── */}
+        <title>About WebieApp Solutions LLC — US-Registered Digital Agency & ABA Consulting</title>
+        <meta name="description" content="WebieApp Solutions LLC is a US-registered technology agency founded in 2017. Based in Richmond, Kentucky with operations in Lucknow, India. 120+ projects, 85+ clients, 12+ countries. Specialists in web development, SaaS, and Autism & ABA consulting." />
+        <meta name="keywords" content="WebieApp Solutions, about WebieApp, US digital agency, Kentucky tech company, ABA consulting firm, web development company USA, SaaS development agency" />
+        <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://webieapp.com/about" />
-        <meta property="og:title" content="About WebieApp Solutions LLC" />
-        <meta property="og:description" content="US-registered technology agency delivering premium web development, SaaS, and Autism & ABA consulting. Founded 2017." />
-        <meta property="og:url" content="https://webieapp.com/about" />
+
+        {/* ── Open Graph ── */}
+        <meta property="og:type"        content="website" />
+        <meta property="og:site_name"   content="WebieApp Solutions LLC" />
+        <meta property="og:title"       content="About WebieApp Solutions LLC — US-Registered Digital Agency" />
+        <meta property="og:description" content="7+ years, 120+ projects, 12+ countries. US-registered agency delivering custom web development, SaaS platforms, and Autism & ABA business consulting." />
+        <meta property="og:url"         content="https://webieapp.com/about" />
+        <meta property="og:image"       content="https://webieapp.com/og-image.png" />
+
+        {/* ── Twitter / X ── */}
+        <meta name="twitter:card"        content="summary_large_image" />
+        <meta name="twitter:title"       content="About WebieApp Solutions LLC" />
+        <meta name="twitter:description" content="US-registered digital agency. 120+ projects, 85+ clients, 12+ countries. Web, SaaS & ABA consulting." />
+        <meta name="twitter:image"       content="https://webieapp.com/og-image.png" />
+
       </Helmet>
 
       <HeroSection />
       <ValuesSection />
-       <OfficesSection />
+      <OfficesSection />
       <WhyTrustSection />
       <FinalCTA />
     </PageLayout>

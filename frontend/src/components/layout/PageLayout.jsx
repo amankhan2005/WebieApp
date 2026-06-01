@@ -32,7 +32,7 @@ export default function PageLayout({ children, noFooter = false }) {
         {children}
       </motion.main>
       {!noFooter && <Footer />}
-      {/* <AIAssistant /> */}
+      <AIAssistant />
     </>
   );
 }

@@ -187,7 +187,7 @@ function HeroSection() {
         position: 'relative',
         paddingTop: '144px', paddingBottom: '120px',
         overflow: 'hidden',
-        background: '#666666',
+        background: isDark ? '#1A2535' : '#2B3D52',
       }}
     >
       {/* Background image — matches About/Services/Portfolio */}
@@ -298,12 +298,12 @@ function HeroSection() {
 // ── What We Help ──────────────────────────────────────────────────
 function WhatWeHelpSection() {
   const { isDark } = useTheme();
-  const sectionBg  = isDark ? '#09090B' : '#F8FAFB';
+  const sectionBg  = isDark ? '#111823' : '#F8FAFB';
   const headingColor = isDark ? '#F8FAFC' : '#111318';
-  const bodyColor    = isDark ? '#71717A' : '#6B7A8D';
-  const cardBg       = isDark ? '#18181B' : '#FFFFFF';
+  const bodyColor    = isDark ? '#94A3B8' : '#6B7A8D';
+  const cardBg       = isDark ? '#1E2A3A' : '#FFFFFF';
   const cardBorder   = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(15,23,42,0.08)';
-  const iconBg       = isDark ? '#27272A' : '#F0FDF9';
+  const iconBg       = isDark ? '#1F2E3F' : '#F0FDF9';
   const iconBorder   = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,200,168,0.15)';
 
   return (
@@ -400,9 +400,9 @@ function WhatWeHelpSection() {
 // ── Process ───────────────────────────────────────────────────────
 function ProcessSection() {
   const { isDark } = useTheme();
-  const sectionBg    = isDark ? '#09090B' : '#FFFFFF';
+  const sectionBg    = isDark ? '#111823' : '#FFFFFF';
   const headingColor = isDark ? '#F8FAFC' : '#111318';
-  const bodyColor    = isDark ? '#71717A' : '#6B7A8D';
+  const bodyColor    = isDark ? '#94A3B8' : '#6B7A8D';
   const dividerColor = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(15,23,42,0.07)';
   const stepBg       = isDark ? 'rgba(0,200,168,0.10)' : 'rgba(0,200,168,0.08)';
   const stepBorder   = isDark ? 'rgba(0,200,168,0.25)' : 'rgba(0,200,168,0.20)';
@@ -524,10 +524,10 @@ function FAQSection() {
   const { isDark } = useTheme();
   const [openIndex, setOpenIndex] = useState(null);
 
-  const sectionBg    = isDark ? '#09090B' : '#F8FAFB';
+  const sectionBg    = isDark ? '#111823' : '#F8FAFB';
   const headingColor = isDark ? '#F8FAFC' : '#111318';
-  const bodyColor    = isDark ? '#71717A' : '#6B7A8D';
-  const cardBg       = isDark ? '#18181B' : '#FFFFFF';
+  const bodyColor    = isDark ? '#94A3B8' : '#6B7A8D';
+  const cardBg       = isDark ? '#1E2A3A' : '#FFFFFF';
 
   return (
     <section
@@ -670,9 +670,9 @@ function ClosingCTA() {
     : 'linear-gradient(135deg, #E6FAF6 0%, #D0F5EE 40%, #E0F8F3 70%, #E6FAF6 100%)';
   const headingColor = isDark ? '#F8FAFC' : '#111318';
   const bodyColor    = isDark ? '#94A3B8' : '#6B7A8D';
-  const bodyColorSub = isDark ? '#71717A' : '#94A3B8';
+  const bodyColorSub = isDark ? '#94A3B8' : '#94A3B8';
   const glowOpacity  = isDark ? 0.10 : 0.20;
-  const trustColor   = isDark ? '#71717A' : '#94A3B8';
+  const trustColor   = isDark ? '#94A3B8' : '#94A3B8';
 
   return (
     <section
@@ -786,15 +786,24 @@ const SCHEMA = {
 export default function AutismConsulting() {
   return (
     <PageLayout>
-      <Helmet>
-        <title>Autism & ABA Clinic Business Consulting — WebieApp Solutions LLC</title>
-        <meta name="description" content="Launch your Autism or ABA therapy clinic with expert business consulting. WebieApp helps ABA entrepreneurs across all 50 US states with clinic setup, HIPAA-aware website, branding, and digital marketing." />
-        <meta name="keywords" content="ABA clinic consulting, autism clinic launch, ABA business consulting USA, BCBA business coach, ABA therapy clinic setup, autism therapy business, ABA clinic website" />
+            <Helmet>
+        <title>Autism & ABA Business Consulting | WebieApp Solutions LLC</title>
+        <meta name="description" content="Launch or scale your Autism & ABA therapy clinic with WebieApp Solutions LLC. We provide complete business consulting — from business formation and HIPAA-aware websites to digital marketing and patient acquisition. Serving BCBAs across all 50 US states." />
+        <meta name="keywords" content="ABA clinic consulting, autism clinic startup, BCBA business consulting, ABA therapy website, autism clinic digital marketing, healthcare consulting USA" />
+        <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://webieapp.com/autism-consulting" />
-        <meta property="og:title" content="ABA Clinic Business Consulting — WebieApp Solutions LLC" />
-        <meta property="og:description" content="End-to-end consulting for ABA clinic entrepreneurs across all 50 US states. From business formation to your first patient." />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="WebieApp Solutions LLC" />
+        <meta property="og:title" content="Autism & ABA Clinic Consulting — WebieApp Solutions LLC" />
+        <meta property="og:description" content="Complete consulting for ABA clinic launches: business formation, HIPAA websites, branding, marketing. All 50 US states. Free discovery call." />
         <meta property="og:url" content="https://webieapp.com/autism-consulting" />
-        <script type="application/ld+json">{JSON.stringify(SCHEMA)}</script>
+        <meta property="og:image" content="https://webieapp.com/og-image.png" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Autism & ABA Consulting — WebieApp" />
+        <meta name="twitter:description" content="Complete consulting for ABA clinic launches: business formation, HIPAA websites, branding, marketing. All 50 US states. Free discovery call." />
+        <meta name="twitter:image" content="https://webieapp.com/og-image.png" />
       </Helmet>
 
       <HeroSection />

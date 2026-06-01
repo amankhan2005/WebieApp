@@ -55,20 +55,20 @@ const FEATURED_PROJECTS = [
 
 function ProjectCard({ p, i, isDark }) {
   const palette      = ACCENT_PALETTES[i % ACCENT_PALETTES.length];
-  const cardBg       = isDark ? '#111113' : '#FFFFFF';
-  const cardBorder   = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(15,23,42,0.07)';
+
+  // ── aligned with About page dark palette ──
+  const cardBg       = isDark ? '#1E293B' : '#FFFFFF';
+  const cardBorder   = isDark ? 'rgba(255,255,255,0.07)' : 'rgba(15,23,42,0.07)';
   const cardShadow   = isDark ? 'none' : '0 2px 8px rgba(0,0,0,0.05)';
-  const headingColor = isDark ? '#F8FAFC' : '#111318';
-  const bodyColor    = isDark ? '#71717A' : '#6B7A8D';
-  const dividerColor = isDark ? 'rgba(255,255,255,0.04)' : 'rgba(15,23,42,0.06)';
-  const yearColor    = isDark ? '#3F3F46' : '#CBD5E1';
+  const headingColor = isDark ? '#F1F5F9' : '#111318';
+  const bodyColor    = isDark ? '#94A3B8' : '#6B7A8D';
+  const dividerColor = isDark ? 'rgba(255,255,255,0.07)' : 'rgba(15,23,42,0.06)';
+  const yearColor    = isDark ? '#475569' : '#CBD5E1';
 
-  // Image area bg — clean surface, not gradient, so images read clearly
-  const imgAreaBg    = isDark ? '#1A1A1D' : '#F4F5F7';
+  const imgAreaBg    = isDark ? '#131C28' : '#F4F5F7';
 
-  // Fade at bottom blends into card bg
   const fadeOverlay  = isDark
-    ? 'linear-gradient(to top, #111113 0%, transparent 80%)'
+    ? 'linear-gradient(to top, #1E293B 0%, transparent 80%)'
     : 'linear-gradient(to top, #FFFFFF 0%, transparent 80%)';
 
   return (
@@ -88,9 +88,9 @@ function ProjectCard({ p, i, isDark }) {
       }}
       onMouseEnter={e => {
         e.currentTarget.style.transform = 'translateY(-5px)';
-        e.currentTarget.style.borderColor = `${palette.dot1}40`;
+        e.currentTarget.style.borderColor = 'rgba(0,200,168,0.3)';
         e.currentTarget.style.boxShadow = isDark
-          ? `0 0 0 1px ${palette.dot1}18, 0 20px 40px rgba(0,0,0,0.4)`
+          ? `0 0 0 1px rgba(0,200,168,0.1), 0 20px 40px rgba(0,0,0,0.3)`
           : '0 12px 40px rgba(0,0,0,0.10)';
       }}
       onMouseLeave={e => {
@@ -105,8 +105,8 @@ function ProjectCard({ p, i, isDark }) {
         flexShrink: 0,
         background: imgAreaBg,
         overflow: 'hidden',
-        // 16:10 aspect ratio — wide enough for banners, not too tall
         aspectRatio: '16 / 10',
+        transition: 'background 0.5s ease',
       }}>
         {p.image ? (
           <img
@@ -115,7 +115,6 @@ function ProjectCard({ p, i, isDark }) {
             style={{
               width: '100%',
               height: '100%',
-              // contain = show full image, no cropping
               objectFit: 'contain',
               objectPosition: 'center center',
               padding: '12px',
@@ -126,7 +125,6 @@ function ProjectCard({ p, i, isDark }) {
             onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; }}
             onError={e => {
               e.currentTarget.style.display = 'none';
-              // show fallback sibling
               const fallback = e.currentTarget.nextElementSibling;
               if (fallback) fallback.style.display = 'flex';
             }}
@@ -139,7 +137,6 @@ function ProjectCard({ p, i, isDark }) {
           position: 'absolute', inset: 0,
           alignItems: 'center', justifyContent: 'center',
         }}>
-          {/* Dot grid */}
           <svg
             aria-hidden
             style={{
@@ -158,7 +155,6 @@ function ProjectCard({ p, i, isDark }) {
             <rect width="100%" height="100%" fill={`url(#dots-${i})`} />
           </svg>
 
-          {/* Abstract mark */}
           <div style={{
             width: '60px', height: '60px', borderRadius: '16px',
             background: isDark ? 'rgba(255,255,255,0.02)' : 'rgba(255,255,255,0.45)',
@@ -177,7 +173,7 @@ function ProjectCard({ p, i, isDark }) {
           </div>
         </div>
 
-        {/* Category badges — strong glass so always readable */}
+        {/* Category badges */}
         <div style={{
           position: 'absolute', top: '12px', left: '12px',
           display: 'flex', flexWrap: 'wrap', gap: '5px',
@@ -192,8 +188,8 @@ function ProjectCard({ p, i, isDark }) {
                 textTransform: 'uppercase',
                 padding: '4px 10px', borderRadius: '9999px',
                 background: isDark
-                  ? `rgba(10,10,12,0.75)`
-                  : `rgba(255,255,255,0.88)`,
+                  ? 'rgba(13,19,28,0.80)'
+                  : 'rgba(255,255,255,0.88)',
                 color: s.text,
                 border: `1px solid ${s.border}`,
                 backdropFilter: 'blur(8px)',
@@ -214,7 +210,7 @@ function ProjectCard({ p, i, isDark }) {
               fontSize: '9px', letterSpacing: '0.08em',
               textTransform: 'uppercase',
               padding: '4px 10px', borderRadius: '9999px',
-              background: isDark ? 'rgba(10,10,12,0.75)' : 'rgba(255,255,255,0.88)',
+              background: isDark ? 'rgba(13,19,28,0.80)' : 'rgba(255,255,255,0.88)',
               color: '#00C8A8',
               border: '1px solid rgba(0,200,168,0.35)',
               backdropFilter: 'blur(8px)',
@@ -226,7 +222,7 @@ function ProjectCard({ p, i, isDark }) {
           </div>
         )}
 
-        {/* Subtle bottom fade into card */}
+        {/* Bottom fade into card */}
         <div style={{
           position: 'absolute', bottom: 0, left: 0, right: 0,
           height: '32px', background: fadeOverlay,
@@ -299,9 +295,10 @@ function ProjectCard({ p, i, isDark }) {
 export function FeaturedProjects() {
   const { isDark } = useTheme();
 
-  const sectionBg    = isDark ? '#09090B' : '#F8FAFB';
-  const headingColor = isDark ? '#F8FAFC' : '#111318';
-  const bodyColor    = isDark ? '#71717A' : '#6B7A8D';
+  // ── alternates with surrounding sections ──
+  const sectionBg    = isDark ? '#18202E' : '#F8FAFB';
+  const headingColor = isDark ? '#F1F5F9' : '#111318';
+  const bodyColor    = isDark ? '#94A3B8' : '#6B7A8D';
 
   return (
     <section

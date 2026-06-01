@@ -203,6 +203,111 @@ const PROJECTS = [
     categories: ['NGO / Community', 'Healthcare'],
     url: 'https://thecityofvision.org/',
   },
+  {
+    id: 20, initials: 'JA', logo: '/portfolio/logos/jambooautism.png',
+    name: 'Jamboo Autism',
+    description: 'A compassionate autism services platform delivering evidence-based ABA therapy and family-centered support programs.',
+    categories: ['Autism & ABA'],
+    url: 'https://jambooautism.com/',
+  },
+  {
+    id: 21, initials: 'AA', logo: '/portfolio/logos/autismabapartners.webp',
+    name: 'Autism ABA Partners',
+    description: 'A dedicated ABA therapy platform connecting families with qualified behavior analysts and therapists.',
+    categories: ['Autism & ABA'],
+    url: 'https://autismabapartners.com/',
+  },
+  {
+    id: 22, initials: 'AB2', logo: '/portfolio/logos/autismbehavior.jpg',
+    name: 'Autism Behavior PLLC',
+    description: 'A professional behavioral health platform providing specialized autism treatment and clinical support services.',
+    categories: ['Autism & ABA', 'Healthcare'],
+    url: 'https://autismbehavior-pllc.com/',
+  },
+  {
+    id: 23, initials: 'VG', logo: '/portfolio/logos/villagegreendental.png',
+    name: 'Village Green Dental',
+    description: 'A modern dental practice platform delivering exceptional patient experiences and comprehensive oral care services in Canada.',
+    categories: ['Healthcare'],
+    url: 'https://villagegreendental.ca/',
+  },
+  {
+    id: 24, initials: 'TS', logo: '/portfolio/logos/theautismspark.jpg',
+    name: 'The Autism Spark',
+    description: 'An inspiring autism services platform igniting potential through innovative ABA therapy and community support.',
+    categories: ['Autism & ABA'],
+    url: 'https://theautismspark.com/',
+  },
+  {
+    id: 25, initials: 'PA', logo: '/portfolio/logos/peacockautism.png',
+    name: 'Peacock Autism',
+    description: 'A vibrant autism care platform offering specialized therapy, behavioral support, and family resources.',
+    categories: ['Autism & ABA'],
+    url: 'https://peacockautism.com/',
+  },
+  {
+    id: 26, initials: 'WH', logo: '/portfolio/logos/wahomefoundation.png',
+    name: 'WA Home Foundation',
+    description: 'A nonprofit foundation platform supporting underserved communities with housing, healthcare, and social services.',
+    categories: ['NGO / Community'],
+    url: 'https://wahomefoundation.com/',
+  },
+  {
+    id: 27, initials: 'IH', logo: '/portfolio/logos/inharmony.png',
+    name: 'InHarmony Behavioral',
+    description: 'A holistic behavioral health platform offering ABA therapy and behavioral wellness services for children and families.',
+    categories: ['Autism & ABA', 'Mental Health'],
+    url: 'https://inharmonybehavioral.com/',
+  },
+  {
+    id: 28, initials: 'CS', logo: '/portfolio/logos/codespringfinancials.webp',
+    name: 'Codespring Financials',
+    description: 'A professional financial services platform delivering smart, technology-driven financial solutions and consulting.',
+    categories: ['Web Platforms'],
+    url: 'https://codespringfinancials.com/',
+  },
+  {
+    id: 29, initials: 'CN', logo: '/portfolio/logos/carestaffnursing.jpg',
+    name: 'Carestaff Nursing Services',
+    description: 'A healthcare staffing platform connecting skilled nursing professionals with healthcare facilities across the region.',
+    categories: ['Healthcare'],
+    url: 'https://carestaffnursingservices.com/',
+  },
+  {
+    id: 30, initials: 'TC', logo: '/portfolio/logos/theautismcare.jpg',
+    name: 'The Autism Care',
+    description: 'A comprehensive autism care platform providing personalized therapy, resources, and advocacy for families.',
+    categories: ['Autism & ABA'],
+    url: 'https://theautismcare.com/',
+  },
+  {
+    id: 31, initials: 'ST', logo: '/portfolio/logos/saferidetrack.png',
+    name: 'Safe Ride Track',
+    description: 'An intelligent ride tracking and safety platform designed for secure, monitored transportation solutions.',
+    categories: ['Logistics & Delivery', 'Mobile Apps'],
+    url: 'https://saferidetrack.com/',
+  },
+  {
+    id: 32, initials: 'SS', logo: '/portfolio/logos/sproutsandshine.png',
+    name: 'Sprouts and Shine ABA',
+    description: 'A nurturing ABA therapy platform helping children with autism thrive through evidence-based, play-centered interventions.',
+    categories: ['Autism & ABA'],
+    url: 'https://sproutsandshineaba.com/',
+  },
+  {
+    id: 33, initials: 'AN', logo: '/portfolio/logos/abcofnewengland.png',
+    name: 'ABC of New England',
+    description: 'A regional autism and behavioral consulting platform serving families across New England with expert ABA services.',
+    categories: ['Autism & ABA'],
+    url: 'https://abcofnewengland.com/',
+  },
+  {
+    id: 34, initials: 'CM', logo: '/portfolio/logos/christvision.png',
+    name: 'Christ Vision Ministries',
+    description: 'A faith-based nonprofit platform connecting communities through ministry, outreach, and social impact programs.',
+    categories: ['NGO / Community'],
+    url: 'https://christvisionministries.org/',
+  },
 ];
 
 // ── Filter Tab ────────────────────────────────────────────────────
@@ -231,7 +336,7 @@ function FilterTab({ category, active, count, onClick, isDark }) {
       {count > 0 && (
         <span style={{
           marginLeft: '5px', fontFamily: 'Inter, sans-serif', fontSize: '10px',
-          fontWeight: 500, color: active ? '#00C8A8' : (isDark ? '#52525B' : '#94A3B8'), opacity: 0.85,
+          fontWeight: 500, color: active ? '#00C8A8' : (isDark ? '#64748B' : '#94A3B8'), opacity: 0.85,
         }}>
           {count}
         </span>
@@ -319,10 +424,10 @@ function ClientLogo({ logo, initials, index, isDark }) {
 function ProjectCard({ project, isDark }) {
   const primaryCat   = project.categories[0];
   const catStyle     = CAT_STYLE[primaryCat] || CAT_STYLE['Web Platforms'];
-  const cardBg       = isDark ? '#111113' : '#FFFFFF';
+  const cardBg       = isDark ? '#141E2B' : '#FFFFFF';
   const cardBorder   = isDark ? 'rgba(255,255,255,0.07)' : 'rgba(15,23,42,0.08)';
   const headingColor = isDark ? '#F8FAFC' : '#111318';
-  const bodyColor    = isDark ? '#71717A' : '#6B7A8D';
+  const bodyColor    = isDark ? '#94A3B8' : '#6B7A8D';
   const dividerColor = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(15,23,42,0.07)';
   const hoverShadow  = isDark
     ? '0 20px 60px rgba(0,0,0,0.45), 0 0 0 1px rgba(0,200,168,0.14)'
@@ -478,7 +583,7 @@ function EmptyState({ category, isDark }) {
       }}>
         No projects in {category}
       </h3>
-      <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '14px', color: isDark ? '#71717A' : '#6B7A8D' }}>
+      <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '14px', color: isDark ? '#94A3B8' : '#6B7A8D' }}>
         More projects coming soon.
       </p>
     </motion.div>
@@ -490,8 +595,8 @@ export default function Portfolio() {
   const { isDark } = useTheme();
   const [activeCategory, setActiveCategory] = useState('All');
 
-  const sectionBg = isDark ? '#09090B' : '#F8FAFB';
-  const bodyColor = isDark ? '#71717A' : '#6B7A8D';
+  const sectionBg = isDark ? '#111823' : '#F8FAFB';
+  const bodyColor = isDark ? '#94A3B8' : '#6B7A8D';
 
   const filtered = useMemo(() =>
     activeCategory === 'All'
@@ -505,13 +610,24 @@ export default function Portfolio() {
 
   return (
     <PageLayout>
-      <Helmet>
-        <title>Portfolio — WebieApp Solutions LLC | Autism, Healthcare & Digital Platforms</title>
-        <meta name="description" content="Explore WebieApp's portfolio of 19 premium client projects across Autism & ABA, Healthcare, Logistics, Real Estate, Mental Health, and more." />
+            <Helmet>
+        <title>Portfolio — 120+ Projects | WebieApp Solutions LLC</title>
+        <meta name="description" content="Browse WebieApp Solutions LLC's portfolio of 120+ projects across ABA/Autism clinics, SaaS platforms, healthcare, logistics, NGO, and web development. Clients across 12+ countries." />
+        <meta name="keywords" content="WebieApp portfolio, ABA clinic websites, SaaS projects, web development portfolio, autism website design, healthcare digital platforms" />
+        <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://webieapp.com/portfolio" />
-        <meta property="og:title" content="Portfolio — WebieApp Solutions LLC" />
-        <meta property="og:description" content="19 premium client projects across Autism & ABA, healthcare, logistics, real estate and more." />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="WebieApp Solutions LLC" />
+        <meta property="og:title" content="WebieApp Portfolio — 120+ Delivered Projects" />
+        <meta property="og:description" content="Browse our portfolio of 120+ projects: ABA clinics, SaaS platforms, healthcare portals, logistics apps, and more across 12+ countries." />
         <meta property="og:url" content="https://webieapp.com/portfolio" />
+        <meta property="og:image" content="https://webieapp.com/og-image.png" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="WebieApp Portfolio — 120+ Projects" />
+        <meta name="twitter:description" content="Browse our portfolio of 120+ projects: ABA clinics, SaaS platforms, healthcare portals, logistics apps, and more across 12+ countries." />
+        <meta name="twitter:image" content="https://webieapp.com/og-image.png" />
       </Helmet>
 
       {/* ── Hero ── */}
@@ -519,7 +635,7 @@ export default function Portfolio() {
         aria-label="Portfolio hero"
         style={{
           position: 'relative', paddingTop: '144px', paddingBottom: '120px',
-          overflow: 'hidden', background: '#666666',
+          overflow: 'hidden', background: isDark ? '#1A2535' : '#2B3D52',
         }}
       >
         <div aria-hidden style={{

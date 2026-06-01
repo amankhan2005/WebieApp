@@ -39,10 +39,10 @@ export const COMPANY = {
     },
   },
   social: {
-    linkedin:  '#',
-    twitter:   '#',
-    instagram: '#',
-    facebook:  '#',
+    linkedin:  'https://www.linkedin.com/company/webieapp-solutions-pvt-ltd',
+    // twitter:   '#',
+    instagram: 'https://www.instagram.com/webieapp_solutions',
+    facebook:  'https://www.facebook.com/webieapp',
   },
 };
 

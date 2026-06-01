@@ -362,7 +362,7 @@ function HeroSection() {
 // ─── TrustBar ─────────────────────────────────────────────────────────────────
 function TrustBar() {
   const { isDark } = useTheme();
-  const bg     = isDark ? '#07070A' : '#F0F4F3';
+  const bg     = isDark ? '#0E1520' : '#F0F4F3';
   const border = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,200,168,0.15)';
   const color  = isDark ? 'rgba(255,255,255,0.35)' : '#6B7A8D';
   const dot    = isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,200,168,0.4)';
@@ -420,14 +420,14 @@ function ServiceCard({ service, index }) {
   const { isDark } = useTheme();
   const [open, setOpen] = useState(false);
 
-  const cardBg       = isDark ? '#18181B' : '#FFFFFF';
+  const cardBg       = isDark ? '#1E2A3A' : '#FFFFFF';
   const cardBorder   = isDark ? 'rgba(255,255,255,0.07)' : 'rgba(15,23,42,0.09)';
   const headingColor = isDark ? '#F8FAFC' : '#111318';
-  const bodyColor    = isDark ? '#71717A' : '#6B7A8D';
+  const bodyColor    = isDark ? '#94A3B8' : '#6B7A8D';
   const metricBorder = isDark ? 'rgba(255,255,255,0.07)' : 'rgba(15,23,42,0.08)';
   const benefitBorder= isDark ? 'rgba(255,255,255,0.05)' : 'rgba(15,23,42,0.06)';
   const stepBg       = isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,200,168,0.04)';
-  const iconBg       = isDark ? '#27272A' : '#F0FDF9';
+  const iconBg       = isDark ? '#1F2E3F' : '#F0FDF9';
   const iconBorder   = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,200,168,0.15)';
 
   return (
@@ -797,9 +797,9 @@ function ServiceCard({ service, index }) {
 // ─── ServicesSection ──────────────────────────────────────────────────────────
 function ServicesSection() {
   const { isDark } = useTheme();
-  const sectionBg    = isDark ? '#09090B' : '#F8FAFB';
+  const sectionBg    = isDark ? '#111823' : '#F8FAFB';
   const headingColor = isDark ? '#F8FAFC' : '#111318';
-  const bodyColor    = isDark ? '#71717A' : '#6B7A8D';
+  const bodyColor    = isDark ? '#94A3B8' : '#6B7A8D';
 
   return (
     <section
@@ -885,10 +885,10 @@ function ServicesSection() {
 // ─── ProcessSection ───────────────────────────────────────────────────────────
 function ProcessSection() {
   const { isDark } = useTheme();
-  const sectionBg    = isDark ? '#07070A' : '#FFFFFF';
+  const sectionBg    = isDark ? '#0E1520' : '#FFFFFF';
   const headingColor = isDark ? '#F8FAFC' : '#111318';
-  const bodyColor    = isDark ? '#71717A' : '#6B7A8D';
-  const cardBg       = isDark ? '#0D0D12' : '#F8FAFB';
+  const bodyColor    = isDark ? '#94A3B8' : '#6B7A8D';
+  const cardBg       = isDark ? '#131D29' : '#F8FAFB';
   const cardBorder   = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(15,23,42,0.08)';
 
   return (
@@ -1031,13 +1031,24 @@ function ProcessSection() {
 export default function Services() {
   return (
     <PageLayout>
-      <Helmet>
-        <title>Services — WebieApp Solutions LLC | Enterprise Digital Agency</title>
-        <meta name="description" content="Premium digital services from WebieApp — Website Development, SaaS, SEO, Digital Marketing, UI/UX Design, and Autism & ABA Consulting. Custom-built for serious businesses." />
+            <Helmet>
+        <title>Services — Web Development, SaaS, SEO, ABA Consulting | WebieApp Solutions</title>
+        <meta name="description" content="Explore WebieApp Solutions LLC's full range of services: custom website development, SaaS platform development, SEO, digital marketing, UI/UX design, social media management, and Autism & ABA business consulting." />
+        <meta name="keywords" content="web development services, SaaS development, SEO services, digital marketing, UI UX design, ABA consulting services, autism clinic website" />
+        <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://webieapp.com/services" />
-        <meta property="og:title"       content="Services — WebieApp Solutions LLC" />
-        <meta property="og:description" content="Enterprise-grade digital solutions: Web Development, SaaS, SEO, Marketing, UI/UX, and ABA Consulting. US-registered. HIPAA-aware." />
-        <meta property="og:url"         content="https://webieapp.com/services" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="WebieApp Solutions LLC" />
+        <meta property="og:title" content="WebieApp Services — Web, SaaS, SEO, ABA Consulting" />
+        <meta property="og:description" content="Full-service digital agency: custom websites, SaaS platforms, SEO, digital marketing, and specialized Autism & ABA clinic consulting." />
+        <meta property="og:url" content="https://webieapp.com/services" />
+        <meta property="og:image" content="https://webieapp.com/og-image.png" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="WebieApp Services — Digital & ABA Consulting" />
+        <meta name="twitter:description" content="Full-service digital agency: custom websites, SaaS platforms, SEO, digital marketing, and specialized Autism & ABA clinic consulting." />
+        <meta name="twitter:image" content="https://webieapp.com/og-image.png" />
       </Helmet>
 
       <HeroSection />

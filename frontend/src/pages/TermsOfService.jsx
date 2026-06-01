@@ -177,10 +177,10 @@ function CalloutBox({ children, isDark, variant = 'teal' }) {
 }
 
 function ServiceCard({ name, desc, isDark }) {
-  const cardBg     = isDark ? '#18181B' : '#FFFFFF';
+  const cardBg     = isDark ? '#1E2A3A' : '#FFFFFF';
   const cardBorder = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(15,23,42,0.08)';
   const nameColor  = isDark ? '#F8FAFC' : '#111318';
-  const bodyColor  = isDark ? '#71717A' : '#6B7A8D';
+  const bodyColor  = isDark ? '#94A3B8' : '#6B7A8D';
 
   return (
     <div style={{
@@ -218,9 +218,9 @@ function ServiceCard({ name, desc, isDark }) {
 
 // ── Sticky ToC ────────────────────────────────────────────────────
 function TableOfContents({ activeId, isDark }) {
-  const tocBg     = isDark ? '#111113' : '#FFFFFF';
+  const tocBg     = isDark ? '#141E2B' : '#FFFFFF';
   const tocBorder = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(15,23,42,0.08)';
-  const itemColor = isDark ? '#71717A' : '#6B7A8D';
+  const itemColor = isDark ? '#94A3B8' : '#6B7A8D';
 
   const scrollTo = (id) => {
     const el = document.getElementById(id);
@@ -326,7 +326,7 @@ export default function TermsOfService() {
   const [activeId, setActiveId] = useState('acceptance');
   const observerRef = useRef(null);
 
-  const sectionBg = isDark ? '#09090B' : '#F8FAFB';
+  const sectionBg = isDark ? '#111823' : '#F8FAFB';
 
   useEffect(() => {
     const ids = TOC.map(t => t.id);
@@ -364,7 +364,7 @@ export default function TermsOfService() {
           paddingTop: '144px', paddingBottom: '100px',
           overflow: 'hidden',
           background: isDark
-            ? 'linear-gradient(150deg, #040608 0%, #091210 40%, #080B0F 100%)'
+            ? 'linear-gradient(150deg, #0D1825 0%, #0F2232 40%, #111823 100%)'
             : 'linear-gradient(150deg, #0D1B2A 0%, #0F2033 50%, #0A1628 100%)',
         }}
       >
@@ -751,7 +751,7 @@ export default function TermsOfService() {
 
                 <div style={{
                   padding: '28px 32px', borderRadius: '16px', margin: '24px 0',
-                  background: isDark ? '#18181B' : '#FFFFFF',
+                  background: isDark ? '#1E2A3A' : '#FFFFFF',
                   border: isDark ? '1px solid rgba(255,255,255,0.06)' : '1px solid rgba(15,23,42,0.08)',
                   boxShadow: isDark ? 'none' : '0 1px 8px rgba(0,0,0,0.05)',
                   transition: 'background 0.5s ease, border-color 0.5s ease',
@@ -828,13 +828,13 @@ export default function TermsOfService() {
                 {/* Last updated */}
                 <div style={{
                   marginTop: '16px', padding: '16px 18px', borderRadius: '12px',
-                  background: isDark ? '#18181B' : '#FFFFFF',
+                  background: isDark ? '#1E2A3A' : '#FFFFFF',
                   border: isDark ? '1px solid rgba(255,255,255,0.06)' : '1px solid rgba(15,23,42,0.08)',
                   transition: 'background 0.5s ease, border-color 0.5s ease',
                 }}>
                   <p style={{
                     fontFamily: 'Inter, sans-serif', fontSize: '11px',
-                    color: isDark ? '#52525B' : '#94A3B8', marginBottom: '4px',
+                    color: isDark ? '#64748B' : '#94A3B8', marginBottom: '4px',
                   }}>
                     Last updated
                   </p>
@@ -862,7 +862,7 @@ export default function TermsOfService() {
                   </p>
                   <p style={{
                     fontFamily: 'Inter, sans-serif', fontSize: '12px',
-                    color: isDark ? '#71717A' : '#6B7A8D',
+                    color: isDark ? '#94A3B8' : '#6B7A8D',
                     marginBottom: '12px', lineHeight: 1.6,
                     transition: 'color 0.5s ease',
                   }}>

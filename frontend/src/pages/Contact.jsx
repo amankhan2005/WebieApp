@@ -1,4 +1,3 @@
- 
 import { useState }    from 'react';
 import { useForm }     from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -75,7 +74,7 @@ function Field({ label, required, error, children, hint, isDark }) {
       </label>
       {children}
       {hint && !error && (
-        <span style={{ fontFamily: 'Inter, sans-serif', fontSize: '11px', color: isDark ? '#52525B' : '#94A3B8' }}>
+        <span style={{ fontFamily: 'Inter, sans-serif', fontSize: '11px', color: isDark ? '#64748B' : '#94A3B8' }}>
           {hint}
         </span>
       )}
@@ -99,7 +98,7 @@ function Field({ label, required, error, children, hint, isDark }) {
 // ── Success state ─────────────────────────────────────────────────
 function SuccessState({ onReset, isDark }) {
   const headingColor = isDark ? '#F8FAFC' : '#111318';
-  const bodyColor    = isDark ? '#71717A' : '#6B7A8D';
+  const bodyColor    = isDark ? '#94A3B8' : '#6B7A8D';
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
@@ -195,10 +194,10 @@ function ContactForm({ isDark }) {
     }
   };
 
-  const inputBg        = isDark ? '#18181B' : '#F8FAFB';
+  const inputBg        = isDark ? '#1E2A3A' : '#F8FAFB';
   const inputBorder    = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(15,23,42,0.10)';
   const inputColor     = isDark ? '#F8FAFC' : '#111318';
-  const placeholderStyle = isDark ? '#52525B' : '#94A3B8';
+  const placeholderStyle = isDark ? '#64748B' : '#94A3B8';
 
   const inputBase = {
     width: '100%',
@@ -275,11 +274,11 @@ function ContactForm({ isDark }) {
           }}
           {...fp('service')}
         >
-          <option value="" style={{ background: isDark ? '#18181B' : '#FFFFFF', color: isDark ? '#F8FAFC' : '#111318' }}>
+          <option value="" style={{ background: isDark ? '#1E2A3A' : '#FFFFFF', color: isDark ? '#F8FAFC' : '#111318' }}>
             Select a service…
           </option>
           {CONTACT_SERVICES.map(s => (
-            <option key={s} value={s} style={{ background: isDark ? '#18181B' : '#FFFFFF', color: isDark ? '#F8FAFC' : '#111318' }}>
+            <option key={s} value={s} style={{ background: isDark ? '#1E2A3A' : '#FFFFFF', color: isDark ? '#F8FAFC' : '#111318' }}>
               {s}
             </option>
           ))}
@@ -335,7 +334,7 @@ function ContactForm({ isDark }) {
 
       <p style={{
         fontFamily: 'Inter, sans-serif', fontSize: '11px',
-        color: isDark ? '#52525B' : '#94A3B8',
+        color: isDark ? '#64748B' : '#94A3B8',
         textAlign: 'center', transition: 'color 0.5s ease',
       }}>
         We respond within 24 hours. No spam, ever. Registered in Kentucky, USA.
@@ -355,12 +354,12 @@ function ContactForm({ isDark }) {
 
 // ── Sidebar ───────────────────────────────────────────────────────
 function InfoSidebar({ isDark }) {
-  const cardBg       = isDark ? '#18181B' : '#FFFFFF';
+  const cardBg       = isDark ? '#1E2A3A' : '#FFFFFF';
   const cardBorder   = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(15,23,42,0.08)';
   const headingColor = isDark ? '#F8FAFC' : '#111318';
-  const bodyColor    = isDark ? '#71717A' : '#6B7A8D';
+  const bodyColor    = isDark ? '#94A3B8' : '#6B7A8D';
   const addrColor    = isDark ? '#A1A1AA' : '#6B7A8D';
-  const labelColor   = isDark ? '#52525B' : '#94A3B8';
+  const labelColor   = isDark ? '#64748B' : '#94A3B8';
 
   return (
     <aside aria-label="Contact information" style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
@@ -495,21 +494,32 @@ function InfoSidebar({ isDark }) {
 export default function Contact() {
   const { isDark } = useTheme();
 
-  const sectionBg      = isDark ? '#09090B' : '#F8FAFB';
+  const sectionBg      = isDark ? '#111823' : '#F8FAFB';
   const headingColor   = isDark ? '#F8FAFC' : '#111318';
-  const bodyColor      = isDark ? '#71717A' : '#6B7A8D';
-  const formCardBg     = isDark ? '#111113' : '#FFFFFF';
+  const bodyColor      = isDark ? '#94A3B8' : '#6B7A8D';
+  const formCardBg     = isDark ? '#141E2B' : '#FFFFFF';
   const formCardBorder = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(15,23,42,0.08)';
 
   return (
     <PageLayout>
-      <Helmet>
-        <title>Contact WebieApp Solutions LLC — Book a Free Consultation</title>
-        <meta name="description" content="Get in touch with WebieApp Solutions LLC. Book a free consultation for web development, SaaS, digital marketing, or Autism & ABA clinic business consulting. Respond within 24 hours." />
+            <Helmet>
+        <title>Contact WebieApp Solutions LLC — Get a Free Consultation</title>
+        <meta name="description" content="Contact WebieApp Solutions LLC for a free consultation. We build custom websites, SaaS platforms, and provide Autism & ABA clinic consulting. Reach us at webieapp@gmail.com." />
+        <meta name="keywords" content="contact WebieApp Solutions, free consultation, hire web developer, ABA consulting inquiry, webieapp@gmail.com" />
+        <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://webieapp.com/contact" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="WebieApp Solutions LLC" />
         <meta property="og:title" content="Contact WebieApp Solutions LLC" />
-        <meta property="og:description" content="Book a free consultation. We respond within 24 hours. US-registered agency." />
+        <meta property="og:description" content="Get a free consultation with WebieApp Solutions LLC. Custom web development, SaaS, and Autism & ABA consulting for clinics across the USA." />
         <meta property="og:url" content="https://webieapp.com/contact" />
+        <meta property="og:image" content="https://webieapp.com/og-image.png" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Contact WebieApp Solutions" />
+        <meta name="twitter:description" content="Get a free consultation with WebieApp Solutions LLC. Custom web development, SaaS, and Autism & ABA consulting for clinics across the USA." />
+        <meta name="twitter:image" content="https://webieapp.com/og-image.png" />
       </Helmet>
 
       <section
@@ -518,7 +528,7 @@ export default function Contact() {
           position: 'relative',
           paddingTop: '144px', paddingBottom: '120px',
           overflow: 'hidden',
-          background: '#666666',
+          background: isDark ? '#1A2535' : '#2B3D52',
         }}
       >
         <div aria-hidden style={{

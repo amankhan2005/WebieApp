@@ -88,12 +88,13 @@ const IND_ICON_BG = {
 
 // ── STATS ─────────────────────────────────────────────────
 export function StatsSection() {
+  // Stats band is always dark — keep #18202E to blend with surrounding navy sections
   return (
     <section
       data-scroll-section="stats"
       aria-label="Statistics"
       style={{
-        background: '#09090B',
+        background: '#18202E',
         position: 'relative',
         overflow: 'hidden',
         padding: '80px 0',
@@ -115,7 +116,7 @@ export function StatsSection() {
                 fontFamily: 'Sora, sans-serif', fontWeight: 700,
                 fontSize: 'clamp(2.5rem, 5vw, 4rem)',
                 lineHeight: 1, letterSpacing: '-0.03em',
-                color: '#F8FAFC', marginBottom: '8px',
+                color: '#F1F5F9', marginBottom: '8px',
               }}>
                 <AnimatedCounter value={s.value} suffix={s.suffix} duration={2200} />
               </div>
@@ -144,11 +145,12 @@ export function ProcessSection() {
   const { isDark } = useTheme();
   const [activeStep, setActiveStep] = useState(null);
 
-  const sectionBg   = isDark ? '#09090B' : '#FFFFFF';
-  const headingColor = isDark ? '#F8FAFC' : '#111318';
-  const bodyColor   = isDark ? '#71717A' : '#6B7A8D';
-  const cardBg      = isDark ? '#18181B' : '#F8FAFB';
-  const cardBorder  = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(15,23,42,0.07)';
+  // ── aligned with About page dark palette ──
+  const sectionBg    = isDark ? '#131C28' : '#FFFFFF';
+  const headingColor = isDark ? '#F1F5F9' : '#111318';
+  const bodyColor    = isDark ? '#94A3B8' : '#6B7A8D';
+  const cardBg       = isDark ? '#1E293B' : '#F8FAFB';
+  const cardBorder   = isDark ? 'rgba(255,255,255,0.07)' : 'rgba(15,23,42,0.07)';
 
   return (
     <section
@@ -158,7 +160,6 @@ export function ProcessSection() {
     >
       <div className="container-xl">
 
-        {/* Heading — 2 lines */}
         <div style={{ maxWidth: '560px', margin: '0 auto', textAlign: 'center', marginBottom: '64px' }}>
           <p style={{
             fontFamily: 'Inter, sans-serif', fontWeight: 500,
@@ -167,25 +168,20 @@ export function ProcessSection() {
           }}>
             Our Process
           </p>
-        <h2
-  id="process-h"
-  style={{
-    fontFamily: 'Sora, sans-serif',
-    fontWeight: 800,
-    fontSize: 'clamp(2.4rem, 5.5vw, 4.8rem)',
-    letterSpacing: '-0.035em',
-    lineHeight: 1.04,
-    color: headingColor,
-    marginBottom: '20px',
-    transition: 'color 0.5s ease',
-  }}
->
-  From idea
-  <br />
-  <span style={GradientSpan()}>
-    to exceptional product.
-  </span>
-</h2>
+          <h2
+            id="process-h"
+            style={{
+              fontFamily: 'Sora, sans-serif', fontWeight: 800,
+              fontSize: 'clamp(2.4rem, 5.5vw, 4.8rem)',
+              letterSpacing: '-0.035em', lineHeight: 1.04,
+              color: headingColor, marginBottom: '20px',
+              transition: 'color 0.5s ease',
+            }}
+          >
+            From idea
+            <br />
+            <span style={GradientSpan()}>to exceptional product.</span>
+          </h2>
           <p style={{
             fontFamily: 'Inter, sans-serif', fontSize: '1.05rem',
             color: bodyColor, lineHeight: 1.7,
@@ -245,7 +241,6 @@ export function ProcessSection() {
                       marginBottom: '16px', position: 'relative', overflow: 'hidden',
                     }}
                   >
-                    {/* Muted number — rest */}
                     <motion.span
                       animate={{ opacity: isActive ? 0 : 1, scale: isActive ? 0.7 : 1 }}
                       transition={{ duration: 0.2 }}
@@ -259,7 +254,6 @@ export function ProcessSection() {
                       {step.number}
                     </motion.span>
 
-                    {/* Code overlay — hover */}
                     <motion.div
                       animate={{ opacity: isActive ? 1 : 0, y: isActive ? 0 : 6 }}
                       transition={{ duration: 0.2 }}
@@ -289,11 +283,10 @@ export function ProcessSection() {
                     </motion.div>
                   </motion.div>
 
-                  {/* Number label */}
                   <span style={{
                     fontFamily: 'Inter, sans-serif', fontWeight: 600,
                     fontSize: '10px', letterSpacing: '0.1em', textTransform: 'uppercase',
-                    color: isActive ? '#00C8A8' : (isDark ? '#3F3F46' : '#CBD5E1'),
+                    color: isActive ? '#00C8A8' : (isDark ? '#475569' : '#CBD5E1'),
                     marginBottom: '5px', transition: 'color 0.25s ease',
                   }}>
                     {step.number}
@@ -301,7 +294,7 @@ export function ProcessSection() {
 
                   <h3 style={{
                     fontFamily: 'Sora, sans-serif', fontWeight: 700, fontSize: '12px',
-                    color: isActive ? (isDark ? '#F8FAFC' : '#111318') : headingColor,
+                    color: isActive ? (isDark ? '#F1F5F9' : '#111318') : headingColor,
                     marginBottom: '6px', lineHeight: 1.3,
                     transition: 'color 0.25s ease',
                   }}>
@@ -326,7 +319,7 @@ export function ProcessSection() {
           {/* Progress bar */}
           <div style={{
             height: '2px',
-            background: isDark ? 'rgba(255,255,255,0.04)' : 'rgba(15,23,42,0.06)',
+            background: isDark ? 'rgba(255,255,255,0.07)' : 'rgba(15,23,42,0.06)',
             borderRadius: '9999px', overflow: 'hidden',
             maxWidth: '480px', margin: '40px auto 0',
           }}>
@@ -369,9 +362,7 @@ export function ProcessSection() {
                 {...fadeUp(i * 0.06)}
                 onClick={() => setActiveStep(isOpen ? null : i)}
                 style={{
-                  background: isOpen
-                    ? (isDark ? '#18181B' : '#FFFFFF')
-                    : (isDark ? '#111113' : '#FAFAFA'),
+                  background: isOpen ? cardBg : (isDark ? '#18202E' : '#FAFAFA'),
                   borderRadius: '14px',
                   border: `1px solid ${isOpen ? 'rgba(0,200,168,0.25)' : cardBorder}`,
                   overflow: 'hidden', cursor: 'pointer',
@@ -384,7 +375,7 @@ export function ProcessSection() {
                 <div style={{ display: 'flex', alignItems: 'center', gap: '14px', padding: '16px 18px' }}>
                   <div style={{
                     width: '40px', height: '40px', borderRadius: '11px', flexShrink: 0,
-                    background: isOpen ? 'rgba(0,200,168,0.10)' : (isDark ? '#18181B' : '#F3F5F8'),
+                    background: isOpen ? 'rgba(0,200,168,0.10)' : cardBg,
                     border: `1px solid ${isOpen ? 'rgba(0,200,168,0.25)' : cardBorder}`,
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     transition: 'all 0.25s ease',
@@ -396,7 +387,7 @@ export function ProcessSection() {
                     ) : (
                       <span style={{
                         fontFamily: 'Sora, sans-serif', fontWeight: 700,
-                        fontSize: '13px', color: isDark ? '#52525B' : '#9CA3AF',
+                        fontSize: '13px', color: isDark ? '#475569' : '#9CA3AF',
                       }}>
                         {step.number}
                       </span>
@@ -406,7 +397,7 @@ export function ProcessSection() {
                   <h3 style={{
                     fontFamily: 'Sora, sans-serif', fontWeight: 700,
                     fontSize: '14px', flex: 1,
-                    color: isOpen ? (isDark ? '#F8FAFC' : '#111318') : headingColor,
+                    color: isOpen ? (isDark ? '#F1F5F9' : '#111318') : headingColor,
                     transition: 'color 0.25s ease',
                   }}>
                     {step.title}
@@ -418,7 +409,7 @@ export function ProcessSection() {
                     style={{
                       width: '20px', height: '20px', flexShrink: 0,
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      color: isOpen ? '#00C8A8' : (isDark ? '#3F3F46' : '#CBD5E1'),
+                      color: isOpen ? '#00C8A8' : (isDark ? '#475569' : '#CBD5E1'),
                     }}
                   >
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -461,11 +452,12 @@ export function ProcessSection() {
 export function IndustriesSection() {
   const { isDark } = useTheme();
 
-  const sectionBg    = isDark ? '#09090B' : '#F8FAFB';
-  const headingColor = isDark ? '#F8FAFC' : '#111318';
-  const bodyColor    = isDark ? '#71717A' : '#6B7A8D';
-  const cardBg       = isDark ? '#18181B' : '#FFFFFF';
-  const cardBorder   = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(15,23,42,0.08)';
+  // ── aligned with About page dark palette ──
+  const sectionBg    = isDark ? '#18202E' : '#F8FAFB';
+  const headingColor = isDark ? '#F1F5F9' : '#111318';
+  const bodyColor    = isDark ? '#94A3B8' : '#6B7A8D';
+  const cardBg       = isDark ? '#1E293B' : '#FFFFFF';
+  const cardBorder   = isDark ? 'rgba(255,255,255,0.07)' : 'rgba(15,23,42,0.08)';
 
   return (
     <section
@@ -522,7 +514,7 @@ export function IndustriesSection() {
                   e.currentTarget.style.transform = 'translateY(-3px)';
                   e.currentTarget.style.borderColor = iconStyle.border;
                   e.currentTarget.style.boxShadow = isDark
-                    ? `0 0 0 1px ${iconStyle.border}`
+                    ? `0 0 0 1px ${iconStyle.border}, 0 8px 24px rgba(0,0,0,0.2)`
                     : '0 8px 24px rgba(0,0,0,0.08)';
                 }}
                 onMouseLeave={e => {
@@ -564,13 +556,14 @@ export function IndustriesSection() {
 }
 
 // ── AUTISM CTA BAND ────────────────────────────────────────
+// Always-dark band — uses the deepest navy so it reads as a deliberate break
 export function AutismCTABand() {
   return (
     <section
       data-scroll-section="autism-cta"
       aria-label="Autism ABA consulting"
       style={{
-        background: '#09090B', position: 'relative',
+        background: '#131C28', position: 'relative',
         overflow: 'hidden', padding: '80px 0',
       }}
     >
@@ -595,23 +588,16 @@ export function AutismCTABand() {
               Autism & ABA Consulting
             </span>
 
-           <h2
-  style={{
-    fontFamily: 'Sora, sans-serif',
-    fontWeight: 800,
-    fontSize: 'clamp(2.4rem, 5.5vw, 4.8rem)',
-    letterSpacing: '-0.035em',
-    lineHeight: 1.04,
-    color: '#F8FAFC',
-    marginBottom: '20px',
-  }}
->
-  Planning to launch
-  <br />
-  <span style={GradientSpan()}>
-    an autism or ABA clinic?
-  </span>
-</h2>
+            <h2 style={{
+              fontFamily: 'Sora, sans-serif', fontWeight: 800,
+              fontSize: 'clamp(2.4rem, 5.5vw, 4.8rem)',
+              letterSpacing: '-0.035em', lineHeight: 1.04,
+              color: '#F1F5F9', marginBottom: '20px',
+            }}>
+              Planning to launch
+              <br />
+              <span style={GradientSpan()}>an autism or ABA clinic?</span>
+            </h2>
 
             <p style={{
               fontFamily: 'Inter, sans-serif', fontSize: '1.1rem',
@@ -642,16 +628,17 @@ export function AutismCTABand() {
 export function TestimonialsSection() {
   const { isDark } = useTheme();
 
-  const sectionBg    = isDark ? '#09090B' : '#FFFFFF';
-  const headingColor = isDark ? '#F8FAFC' : '#111318';
-  const bodyColor    = isDark ? '#71717A' : '#6B7A8D';
-  const cardBg       = isDark ? '#18181B' : '#FFFFFF';
-  const cardBorder   = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(15,23,42,0.08)';
-  const quoteColor   = isDark ? '#A1A1AA' : '#4B5563';
-  const metaColor    = isDark ? '#52525B' : '#9CA3AF';
-  const dividerColor = isDark ? 'rgba(255,255,255,0.04)' : 'rgba(15,23,42,0.07)';
-  const avatarBg     = isDark ? 'rgba(0,200,168,0.12)' : 'rgba(0,200,168,0.08)';
-  const avatarBorder = isDark ? 'rgba(0,200,168,0.2)'  : 'rgba(0,200,168,0.15)';
+  // ── aligned with About page dark palette ──
+  const sectionBg    = isDark ? '#131C28' : '#FFFFFF';
+  const headingColor = isDark ? '#F1F5F9' : '#111318';
+  const bodyColor    = isDark ? '#94A3B8' : '#6B7A8D';
+  const cardBg       = isDark ? '#1E293B' : '#FFFFFF';
+  const cardBorder   = isDark ? 'rgba(255,255,255,0.07)' : 'rgba(15,23,42,0.08)';
+  const quoteColor   = isDark ? '#CBD5E1' : '#4B5563';
+  const metaColor    = isDark ? '#64748B' : '#9CA3AF';
+  const dividerColor = isDark ? 'rgba(255,255,255,0.07)' : 'rgba(15,23,42,0.07)';
+  const avatarBg     = isDark ? 'rgba(0,200,168,0.08)' : 'rgba(0,200,168,0.08)';
+  const avatarBorder = isDark ? 'rgba(0,200,168,0.15)' : 'rgba(0,200,168,0.15)';
 
   return (
     <section
@@ -703,9 +690,9 @@ export function TestimonialsSection() {
               }}
               onMouseEnter={e => {
                 e.currentTarget.style.transform = 'translateY(-3px)';
-                e.currentTarget.style.borderColor = 'rgba(0,200,168,0.2)';
+                e.currentTarget.style.borderColor = 'rgba(0,200,168,0.3)';
                 e.currentTarget.style.boxShadow = isDark
-                  ? '0 0 0 1px rgba(0,200,168,0.08)'
+                  ? '0 0 0 1px rgba(0,200,168,0.1), 0 8px 24px rgba(0,0,0,0.2)'
                   : '0 8px 24px rgba(0,0,0,0.08)';
               }}
               onMouseLeave={e => {
@@ -774,7 +761,7 @@ export function TestimonialsSection() {
 // ── FINAL CTA ──────────────────────────────────────────────
 export function FinalCTA() {
   const { isDark } = useTheme();
-  const wrapperBg = isDark ? '#09090B' : '#FFFFFF';
+  const wrapperBg = isDark ? '#18202E' : '#FFFFFF';
 
   return (
     <section
@@ -785,9 +772,10 @@ export function FinalCTA() {
       <div className="container-xl">
         <div style={{
           position: 'relative', overflow: 'hidden',
-          borderRadius: '24px', background: '#09090B',
+          borderRadius: '24px', background: '#131C28',
           padding: 'clamp(48px, 8vw, 80px) clamp(32px, 6vw, 64px)',
           textAlign: 'center',
+          border: '1px solid rgba(255,255,255,0.07)',
         }}>
           <div aria-hidden style={{
             position: 'absolute', inset: 0, pointerEvents: 'none',
@@ -825,7 +813,7 @@ export function FinalCTA() {
               fontFamily: 'Sora, sans-serif', fontWeight: 800,
               fontSize: 'clamp(2.4rem, 5.5vw, 4.8rem)',
               letterSpacing: '-0.035em', lineHeight: 1.04,
-              color: '#F8FAFC', marginBottom: '20px', display: 'block',
+              color: '#F1F5F9', marginBottom: '20px', display: 'block',
             }}>
               Let's build something
               <br />

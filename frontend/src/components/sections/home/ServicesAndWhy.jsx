@@ -1,4 +1,4 @@
- import { motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { SERVICES, WHY_CHOOSE_US } from '../../../data/siteData.js';
 import Button, { ArrowRight } from '../../ui/Button.jsx';
@@ -67,13 +67,14 @@ function ClientLogo({ name, file, w, h, isDark }) {
 export function ClientMarquee() {
   const { isDark } = useTheme();
 
-  const row1 = [...CLIENT_LOGOS, ...CLIENT_LOGOS];
-  const row2 = [...CLIENT_LOGOS].reverse();
+  const row1        = [...CLIENT_LOGOS, ...CLIENT_LOGOS];
+  const row2        = [...CLIENT_LOGOS].reverse();
   const row2doubled = [...row2, ...row2];
 
-  const sectionBg   = isDark ? '#09090B' : '#F8FAFC';
-  const borderColor = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(15,23,42,0.08)';
-  const fadeColorL  = isDark ? '#09090B' : '#F8FAFC';
+  // ── aligned with About page dark palette ──
+  const sectionBg   = isDark ? '#18202E' : '#F8FAFC';
+  const borderColor = isDark ? 'rgba(255,255,255,0.07)' : 'rgba(15,23,42,0.08)';
+  const fadeColorL  = isDark ? '#18202E' : '#F8FAFC';
 
   return (
     <section
@@ -103,7 +104,7 @@ export function ClientMarquee() {
           fontFamily: 'Sora, sans-serif', fontWeight: 800,
           fontSize: 'clamp(2.6rem, 6vw, 5.2rem)',
           letterSpacing: '-0.035em', lineHeight: 1.04,
-          color: isDark ? '#F8FAFC' : '#111318',
+          color: isDark ? '#F1F5F9' : '#111318',
           transition: 'color 0.5s ease',
         }}>
           Built for the brands
@@ -247,13 +248,14 @@ const SVC_ICONS = {
 };
 
 function ServiceCard({ svc, index, isDark }) {
-  const cardBg     = isDark ? '#18181B' : '#FFFFFF';
-  const cardBorder = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(15,23,42,0.08)';
-  const iconBg     = isDark ? '#27272A' : '#F8FAFB';
-  const iconBorder = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(15,23,42,0.08)';
-  const titleColor = isDark ? '#F8FAFC' : '#111318';
-  const bodyColor  = isDark ? '#71717A' : '#6B7A8D';
-  const badgeBg    = isDark ? 'rgba(0,200,168,0.12)' : '#F0FDF9';
+  // ── aligned with About page dark palette ──
+  const cardBg     = isDark ? '#1E293B' : '#FFFFFF';
+  const cardBorder = isDark ? 'rgba(255,255,255,0.07)' : 'rgba(15,23,42,0.08)';
+  const iconBg     = isDark ? 'rgba(0,200,168,0.08)' : '#F8FAFB';
+  const iconBorder = isDark ? 'rgba(0,200,168,0.15)' : 'rgba(15,23,42,0.08)';
+  const titleColor = isDark ? '#F1F5F9' : '#111318';
+  const bodyColor  = isDark ? '#94A3B8' : '#6B7A8D';
+  const badgeBg    = isDark ? 'rgba(0,200,168,0.10)' : '#F0FDF9';
   const badgeColor = isDark ? '#2DD4BF' : '#0F766E';
 
   return (
@@ -270,7 +272,7 @@ function ServiceCard({ svc, index, isDark }) {
         onMouseEnter={e => {
           e.currentTarget.style.borderColor = 'rgba(0,200,168,0.3)';
           e.currentTarget.style.boxShadow = isDark
-            ? '0 0 0 1px rgba(0,200,168,0.15)'
+            ? '0 0 0 1px rgba(0,200,168,0.1), 0 8px 24px rgba(0,0,0,0.2)'
             : '0 8px 24px rgba(0,0,0,0.08)';
         }}
         onMouseLeave={e => {
@@ -284,6 +286,7 @@ function ServiceCard({ svc, index, isDark }) {
             alignSelf: 'flex-start',
             fontFamily: 'Inter, sans-serif', fontWeight: 600,
             fontSize: '11px', color: badgeColor, background: badgeBg,
+            border: `1px solid ${isDark ? 'rgba(0,200,168,0.2)' : 'transparent'}`,
             borderRadius: '4px', padding: '2px 8px', marginBottom: '12px',
             transition: 'background 0.5s ease, color 0.5s ease',
           }}>
@@ -298,8 +301,8 @@ function ServiceCard({ svc, index, isDark }) {
             background: iconBg, border: `1px solid ${iconBorder}`,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             marginBottom: '20px',
-            color: isDark ? '#71717A' : '#6B7A8D', flexShrink: 0,
-            transition: 'background 0.5s ease, border-color 0.5s ease, color 0.3s ease',
+            color: '#00C8A8', flexShrink: 0,
+            transition: 'background 0.5s ease, border-color 0.5s ease',
           }}
         >
           <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden>
@@ -348,9 +351,10 @@ function ServiceCard({ svc, index, isDark }) {
 export function ServicesGrid() {
   const { isDark } = useTheme();
 
-  const sectionBg    = isDark ? '#09090B' : '#FFFFFF';
-  const headingColor = isDark ? '#F8FAFC' : '#111318';
-  const bodyColor    = isDark ? '#71717A' : '#6B7A8D';
+  // ── alternating section bg matching About page rhythm ──
+  const sectionBg    = isDark ? '#131C28' : '#FFFFFF';
+  const headingColor = isDark ? '#F1F5F9' : '#111318';
+  const bodyColor    = isDark ? '#94A3B8' : '#6B7A8D';
 
   return (
     <section
@@ -370,31 +374,29 @@ export function ServicesGrid() {
           }}>
             Our Services
           </p>
-   <h2
-  id="services-h"
-  style={{
-    fontFamily: 'Sora, sans-serif',
-    fontWeight: 800,
-    fontSize: 'clamp(2.6rem, 6vw, 5.2rem)', // same as client marquee
-    letterSpacing: '-0.035em',
-    lineHeight: 1.04,
-    color: headingColor,
-    marginBottom: '1.25rem',
-    transition: 'color 0.5s ease',
-  }}
->
-  Everything you need{' '}
-  <span
-    style={{
-      background: 'linear-gradient(135deg, #00C8A8 0%, #0891b2 100%)',
-      WebkitBackgroundClip: 'text',
-      WebkitTextFillColor: 'transparent',
-      backgroundClip: 'text',
-    }}
-  >
-    to scale.
-  </span>
-</h2>
+          <h2
+            id="services-h"
+            style={{
+              fontFamily: 'Sora, sans-serif',
+              fontWeight: 800,
+              fontSize: 'clamp(2.6rem, 6vw, 5.2rem)',
+              letterSpacing: '-0.035em',
+              lineHeight: 1.04,
+              color: headingColor,
+              marginBottom: '1.25rem',
+              transition: 'color 0.5s ease',
+            }}
+          >
+            Everything you need{' '}
+            <span style={{
+              background: 'linear-gradient(135deg, #00C8A8 0%, #0891b2 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}>
+              to scale.
+            </span>
+          </h2>
           <p style={{
             fontFamily: 'Inter, sans-serif', fontSize: '1.1rem',
             color: bodyColor, lineHeight: 1.7,
@@ -466,13 +468,14 @@ const WHY_ICONS = {
 export function WhyChooseUs() {
   const { isDark } = useTheme();
 
-  const sectionBg     = isDark ? '#09090B' : '#F8FAFB';
-  const cardBg        = isDark ? '#18181B' : '#FFFFFF';
-  const cardBorder    = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(15,23,42,0.08)';
-  const iconBg        = isDark ? '#27272A' : '#F8FAFB';
-  const iconBorder    = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(15,23,42,0.08)';
-  const headingColor  = isDark ? '#F8FAFC' : '#111318';
-  const bodyColor     = isDark ? '#71717A' : '#6B7A8D';
+  // ── aligned with About page dark palette ──
+  const sectionBg    = isDark ? '#18202E' : '#F8FAFB';
+  const cardBg       = isDark ? '#1E293B' : '#FFFFFF';
+  const cardBorder   = isDark ? 'rgba(255,255,255,0.07)' : 'rgba(15,23,42,0.08)';
+  const iconBg       = isDark ? 'rgba(0,200,168,0.08)' : '#F8FAFB';
+  const iconBorder   = isDark ? 'rgba(0,200,168,0.15)' : 'rgba(15,23,42,0.08)';
+  const headingColor = isDark ? '#F1F5F9' : '#111318';
+  const bodyColor    = isDark ? '#94A3B8' : '#6B7A8D';
 
   return (
     <section
@@ -579,9 +582,9 @@ export function WhyChooseUs() {
                 }}
                 onMouseEnter={e => {
                   e.currentTarget.style.transform = 'translateY(-3px)';
-                  e.currentTarget.style.borderColor = 'rgba(0,200,168,0.25)';
+                  e.currentTarget.style.borderColor = 'rgba(0,200,168,0.3)';
                   e.currentTarget.style.boxShadow = isDark
-                    ? '0 0 0 1px rgba(0,200,168,0.1)'
+                    ? '0 0 0 1px rgba(0,200,168,0.1), 0 8px 24px rgba(0,0,0,0.2)'
                     : '0 8px 24px rgba(0,0,0,0.08)';
                 }}
                 onMouseLeave={e => {
@@ -595,7 +598,7 @@ export function WhyChooseUs() {
                   background: iconBg, border: `1px solid ${iconBorder}`,
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   marginBottom: '16px',
-                  color: isDark ? '#71717A' : '#6B7A8D',
+                  color: '#00C8A8',
                   transition: 'background 0.5s ease, border-color 0.5s ease',
                 }}>
                   <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden>
