@@ -1,10 +1,17 @@
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useLocation,
+} from 'react-router-dom';
+
 import { HelmetProvider } from 'react-helmet-async';
 import { AnimatePresence } from 'framer-motion';
 import { useEffect } from 'react';
 
 import { ThemeProvider } from './context/ThemeContext';
 import { useScrollTheme } from './hooks/useScrollTheme';
+import { useGAPageTracking } from './hooks/useGAPageTracking';
 
 // Pages
 import Home from './pages/Home';
@@ -23,7 +30,7 @@ function ScrollToTop() {
   useEffect(() => {
     window.scrollTo({
       top: 0,
-      behavior: 'instant',
+      behavior: 'auto',
     });
   }, [pathname]);
 
@@ -81,28 +88,41 @@ function NotFound() {
 function AppRoutes() {
   const location = useLocation();
 
+  // Google Analytics tracking
+  useGAPageTracking();
+
   return (
     <>
       <ScrollToTop />
       <ScrollThemeActivator />
 
       <AnimatePresence mode="wait" initial={false}>
-        <Routes location={location} key={location.pathname}>
+        <Routes
+          location={location}
+          key={location.pathname + location.search}
+        >
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
           <Route path="/portfolio" element={<Portfolio />} />
+
           <Route
             path="/autism-consulting"
             element={<AutismConsulting />}
           />
+
           <Route path="/liberia" element={<Liberia />} />
           <Route path="/contact" element={<Contact />} />
+
           <Route
             path="/privacy-policy"
             element={<PrivacyPolicy />}
           />
-          <Route path="/terms" element={<TermsOfService />} />
+
+          <Route
+            path="/terms"
+            element={<TermsOfService />}
+          />
 
           {/* 404 */}
           <Route path="*" element={<NotFound />} />

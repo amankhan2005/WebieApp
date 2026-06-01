@@ -17,11 +17,11 @@ function FillButton({ to, children, fullWidth, isDesktop }) {
         alignItems: 'center',
         justifyContent: 'center',
         gap: '8px',
-        padding: isDesktop ? '17px 38px' : '14px 28px',
+        padding: isDesktop ? '17px 38px' : '16px 28px',
         borderRadius: '14px',
         fontFamily: 'Inter, sans-serif',
-        fontSize: isDesktop ? '1.05rem' : '0.95rem',
-        fontWeight: 600,
+        fontSize: isDesktop ? '1.05rem' : '1rem',
+        fontWeight: 700,
         color: '#fff',
         textDecoration: 'none',
         overflow: 'hidden',
@@ -29,7 +29,10 @@ function FillButton({ to, children, fullWidth, isDesktop }) {
         border: 'none',
         width: fullWidth ? '100%' : 'auto',
         boxSizing: 'border-box',
-        letterSpacing: isDesktop ? '0.01em' : 0,
+        letterSpacing: isDesktop ? '0.01em' : '0.02em',
+        boxShadow: !isDesktop
+          ? '0 8px 32px rgba(0, 200, 168, 0.28), 0 2px 8px rgba(0,0,0,0.12)'
+          : 'none',
       }}
     >
       <span style={{
@@ -49,7 +52,7 @@ function FillButton({ to, children, fullWidth, isDesktop }) {
   );
 }
 
-const ROTATING_WORDS = ['Win','Succeed', 'Scale', 'Perform', 'Matter'];
+const ROTATING_WORDS = ['Win', 'Succeed', 'Scale', 'Perform', 'Matter'];
 
 /* ─── Per-letter animation variants ────────────────────────────────── */
 const LETTER_VARIANTS = {
@@ -138,7 +141,7 @@ export default function Hero() {
   }, []);
 
   const headlineFontSize = isMobile
-    ? 'clamp(1.85rem, 8.5vw, 2.5rem)'
+    ? 'clamp(2.55rem, 11vw, 3.25rem)'           // ← bigger & bolder on mobile
     : isTablet
       ? 'clamp(2.8rem, 7vw, 4.6rem)'
       : 'clamp(4.6rem, 7vw, 8.5rem)';
@@ -164,6 +167,24 @@ export default function Hero() {
       <div aria-hidden style={{
         position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none',
       }}>
+        {/* ── Mobile-specific soft glow bloom behind headline ── */}
+        {isMobile && (
+          <div style={{
+            position: 'absolute',
+            top: '8%',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: '340px',
+            height: '340px',
+            background: isDark
+              ? 'radial-gradient(ellipse at 50% 40%, rgba(0,200,168,0.13) 0%, rgba(123,97,255,0.09) 50%, transparent 75%)'
+              : 'radial-gradient(ellipse at 50% 40%, rgba(0,200,168,0.10) 0%, rgba(123,97,255,0.06) 50%, transparent 75%)',
+            animation: 'mobileGlow 6s ease-in-out infinite',
+            borderRadius: '50%',
+            pointerEvents: 'none',
+          }} />
+        )}
+
         <div style={{
           position: 'absolute', top: 0, right: 0,
           width: 'min(700px, 85vw)', height: 'min(700px, 85vw)',
@@ -197,6 +218,14 @@ export default function Hero() {
           50%  { background-position: 100% 50%; }
           100% { background-position: 0%   50%; }
         }
+        @keyframes mobileGlow {
+          0%, 100% { opacity: 0.7; transform: translateX(-50%) scale(1); }
+          50%       { opacity: 1;   transform: translateX(-50%) scale(1.12); }
+        }
+        @keyframes accentPulse {
+          0%, 100% { opacity: 0.55; width: 36px; }
+          50%       { opacity: 1;   width: 56px; }
+        }
       `}</style>
 
       {/* ── Content ── */}
@@ -205,8 +234,9 @@ export default function Hero() {
         width: '100%',
         maxWidth: isMobile ? '100%' : isTablet ? '860px' : '1320px',
         margin: '0 auto',
+        /* ── Mobile padding: more generous top, refined sides ── */
         padding: isMobile
-          ? '5rem 1.5rem 3rem'
+          ? '4.5rem 1.75rem 4rem'
           : isTablet
             ? 'clamp(4rem, 8vw, 5.5rem) 2rem clamp(3rem, 6vw, 4.5rem)'
             : 'clamp(6rem, 8vw, 7rem) 2.5rem clamp(3.5rem, 6vw, 5rem)',
@@ -218,6 +248,24 @@ export default function Hero() {
         overflow: 'visible',
       }}>
 
+        {/* ── Mobile accent rule ── */}
+        {isMobile && (
+          <motion.div
+            initial={{ opacity: 0, scaleX: 0 }}
+            animate={{ opacity: 1, scaleX: 1 }}
+            transition={{ duration: 0.55, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            style={{
+              width: '44px',
+              height: '3px',
+              borderRadius: '99px',
+              background: 'linear-gradient(90deg, #00C8A8, #7B61FF)',
+              marginBottom: '1.5rem',
+              transformOrigin: 'left center',
+              animation: 'accentPulse 3s ease-in-out infinite',
+            }}
+          />
+        )}
+
         {/* ── Headline ── */}
         <motion.h1
           initial={{ opacity: 0, y: 28, filter: 'blur(4px)' }}
@@ -228,20 +276,43 @@ export default function Hero() {
             fontFamily: 'Sora, sans-serif',
             fontWeight: 800,
             fontSize: headlineFontSize,
-            lineHeight: isMobile ? 1.18 : 1.05,
-            letterSpacing: '-0.03em',
+            /* ── Mobile: tighter leading for editorial impact ── */
+            lineHeight: isMobile ? 1.1 : 1.05,
+            letterSpacing: isMobile ? '-0.035em' : '-0.03em',
             color: isDark ? '#F8FAFC' : '#111318',
             whiteSpace: isMobile ? 'normal' : 'nowrap',
             transition: 'color 0.5s ease',
-            marginBottom: isMobile ? '1.1rem' : isTablet ? '1.25rem' : '1.5rem',
+            /* ── Mobile: tighter bottom margin, headline breathes more ── */
+            marginBottom: isMobile ? '1.4rem' : isTablet ? '1.25rem' : '1.5rem',
             width: '100%',
             overflow: 'visible',
           }}
         >
           {isMobile ? (
-            <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.02em' }}>
-              <span style={{ display: 'block' }}>We Engineer</span>
-              <span style={{ display: 'block' }}>Digital Products</span>
+            /* ── MOBILE HEADLINE LAYOUT ── */
+            <span style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: '0.04em',
+            }}>
+              {/* Line 1: "We Engineer" */}
+              <span style={{
+                display: 'block',
+                color: isDark ? '#F8FAFC' : '#111318',
+              }}>
+                We Engineer
+              </span>
+
+              {/* Line 2: "Digital Products" — slightly de-emphasized */}
+              <span style={{
+                display: 'block',
+                color: isDark ? '#CBD5E1' : '#2E3540',
+              }}>
+                Digital Products
+              </span>
+
+              {/* Line 3: "That {Word}." — hero moment */}
               <span style={{
                 display: 'flex',
                 flexDirection: 'row',
@@ -249,10 +320,16 @@ export default function Hero() {
                 justifyContent: 'center',
                 flexWrap: 'nowrap',
                 overflow: 'visible',
-                paddingTop: '0.1em',
-                paddingBottom: '0.15em',
+                paddingTop: '0.06em',
+                paddingBottom: '0.18em',
+                marginTop: '0.06em',
               }}>
-                <span style={{ whiteSpace: 'nowrap' }}>That&nbsp;</span>
+                <span style={{
+                  whiteSpace: 'nowrap',
+                  color: isDark ? '#F8FAFC' : '#111318',
+                }}>
+                  That&nbsp;
+                </span>
                 <span style={{
                   display: 'inline-flex',
                   alignItems: 'baseline',
@@ -269,6 +346,7 @@ export default function Hero() {
               </span>
             </span>
           ) : (
+            /* ── DESKTOP / TABLET — unchanged ── */
             <>
               <span style={{ display: 'block', whiteSpace: 'nowrap' }}>
                 We Engineer Digital
@@ -310,13 +388,18 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.5, ease: 'easeOut' }}
           style={{
             fontFamily: 'Inter, sans-serif',
-            fontSize: isMobile ? '0.95rem' : isTablet ? 'clamp(1rem, 2vw, 1.15rem)' : 'clamp(1.1rem, 1.6vw, 1.35rem)',
-            lineHeight: 1.78,
+            fontSize: isMobile
+              ? '1.0rem'                             // ← slightly larger for readability
+              : isTablet
+                ? 'clamp(1rem, 2vw, 1.15rem)'
+                : 'clamp(1.1rem, 1.6vw, 1.35rem)',
+            lineHeight: isMobile ? 1.82 : 1.78,
             color: isDark ? '#64748B' : '#6B7A8D',
-            maxWidth: isMobile ? '100%' : isTablet ? '560px' : '720px',
-            marginBottom: isMobile ? '1.5rem' : isTablet ? '1.75rem' : '2rem',
+            /* ── Mobile: slightly narrower max-width keeps line length comfortable ── */
+            maxWidth: isMobile ? '88%' : isTablet ? '560px' : '720px',
+            marginBottom: isMobile ? '2.25rem' : isTablet ? '1.75rem' : '2rem',
             transition: 'color 0.5s ease',
-            padding: isMobile ? '0 0.5rem' : 0,
+            padding: 0,
             textWrap: 'pretty',
           }}
         >
@@ -341,14 +424,19 @@ export default function Hero() {
             flexDirection: isMobile ? 'column' : 'row',
             alignItems: 'stretch',
             justifyContent: 'center',
-            gap: isMobile ? '12px' : isTablet ? '14px' : '18px',
+            /* ── Mobile: tighter gap, full-bleed feel ── */
+            gap: isMobile ? '14px' : isTablet ? '14px' : '18px',
             width: isMobile ? '100%' : 'auto',
             boxSizing: 'border-box',
+            /* ── Mobile: subtle max-width keeps buttons from stretching too wide on large phones ── */
+            maxWidth: isMobile ? '360px' : 'none',
+            alignSelf: isMobile ? 'center' : 'auto',
           }}
         >
           <FillButton to="/contact" fullWidth={isMobile} isDesktop={!isMobile && !isTablet}>
             Book Free Consultation
           </FillButton>
+
           <div style={{
             width: isMobile ? '100%' : 'auto',
             display: 'flex',
@@ -358,12 +446,46 @@ export default function Hero() {
               to="/portfolio"
               variant="ghost"
               size="lg"
-              style={isMobile ? { width: '100%' } : {}}
+              style={isMobile
+                ? {
+                    width: '100%',
+                    /* ── Mobile ghost button: subtle border elevation ── */
+                    border: isDark
+                      ? '1.5px solid rgba(255,255,255,0.12)'
+                      : '1.5px solid rgba(17,19,24,0.10)',
+                    borderRadius: '14px',
+                    padding: '15px 28px',
+                    fontWeight: 600,
+                    fontSize: '1rem',
+                    letterSpacing: '0.01em',
+                  }
+                : {}
+              }
             >
               View Our Work
             </Button>
           </div>
         </motion.div>
+
+        {/* ── Mobile: social proof micro-line ── */}
+        {isMobile && (
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.7, delay: 1.1 }}
+            style={{
+              marginTop: '2rem',
+              fontFamily: 'Inter, sans-serif',
+              fontSize: '0.78rem',
+              letterSpacing: '0.04em',
+              color: isDark ? 'rgba(100,116,139,0.7)' : 'rgba(107,122,141,0.65)',
+              textTransform: 'uppercase',
+              fontWeight: 500,
+            }}
+          >
+            Trusted by enterprises worldwide
+          </motion.p>
+        )}
 
       </div>
     </section>
