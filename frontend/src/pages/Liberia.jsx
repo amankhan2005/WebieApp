@@ -1,3 +1,5 @@
+ // src/pages/Liberia.jsx
+
 import { motion }     from 'framer-motion';
 import { Helmet }     from 'react-helmet-async';
 import PageLayout      from '../components/layout/PageLayout.jsx';
@@ -21,7 +23,6 @@ const fadeUp = (i = 0) => ({
 
 // ── SVG Icons ─────────────────────────────────────────────────────
 const Icon = {
-  // Pillar icons (20px)
   Government: (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00C8A8" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
       <line x1="3" y1="22" x2="21" y2="22"/>
@@ -66,7 +67,6 @@ const Icon = {
       <line x1="2"  y1="20" x2="22" y2="20"/>
     </svg>
   ),
-  // Case study visual icons (48px rendered at 48×48)
   Truck: (
     <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#00C8A8" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
       <rect x="1" y="3" width="15" height="13" rx="1"/>
@@ -86,13 +86,17 @@ const Icon = {
       <line x1="10" y1="18" x2="10" y2="18"/><line x1="14" y1="18" x2="14" y2="18"/>
     </svg>
   ),
-  // Small trust / check
+  MapPin: (
+    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#00C8A8" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/>
+      <circle cx="12" cy="10" r="3"/>
+    </svg>
+  ),
   Check: (
     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#00C8A8" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
       <polyline points="20 6 9 17 4 12"/>
     </svg>
   ),
-  // Flag for Liberia hero eyebrow
   Flag: (
     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00C8A8" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
       <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>
@@ -117,7 +121,7 @@ const LIBERIA_PROJECTS = [
       'Driver management fully digitized',
       'Customer satisfaction scores increased significantly',
     ],
-    tech:     ['React', 'Node.js', 'MongoDB', 'Google Maps API', 'SMS Integration'],
+    tech:       ['React', 'Node.js', 'MongoDB', 'Google Maps API', 'SMS Integration'],
     visualIcon: 'Truck',
     gradientDark:  'linear-gradient(135deg, #0A1A18 0%, #061412 100%)',
     gradientLight: 'linear-gradient(135deg, #F0FDF9 0%, #ECFEF7 100%)',
@@ -137,28 +141,48 @@ const LIBERIA_PROJECTS = [
       'Investor inquiry pipeline fully digitized',
       'Professional brand identity established for the market',
     ],
-    tech:     ['React', 'Node.js', 'MongoDB', 'Cloudinary', ],
+    tech:       ['React', 'Node.js', 'MongoDB', 'Cloudinary'],
     visualIcon: 'Building2',
     gradientDark:  'linear-gradient(135deg, #0A0E1A 0%, #060814 100%)',
     gradientLight: 'linear-gradient(135deg, #EFF6FF 0%, #E0F2FE 100%)',
     year: '2026',
   },
+  {
+    id:        'saferidetrack',
+    image:     '/projects/saferide.png',
+    category:  'Ride Safety · Mobile App',
+    title:     'Safe Ride Track',
+    tagline:   'Intelligent Ride Tracking for Safer Transportation',
+    challenge: 'Passengers and fleet operators in West Africa lacked a reliable way to monitor rides in real time — creating safety risks, accountability gaps, and no mechanism for emergency response during transit.',
+    solution:  'We built Safe Ride Track, a GPS-powered ride monitoring platform enabling live location sharing, trip history logging, emergency SOS triggers, and fleet oversight dashboards for operators and safety managers.',
+    results: [
+      'Real-time ride visibility launched for the first time',
+      'Emergency SOS feature deployed across active fleet',
+      'Fleet accountability and trip logging fully automated',
+      'Passenger safety confidence significantly improved',
+    ],
+    tech:       ['React Native', 'Node.js', 'MongoDB', 'Google Maps API', 'Firebase'],
+    visualIcon: 'MapPin',
+    gradientDark:  'linear-gradient(135deg, #0A1218 0%, #06090F 100%)',
+    gradientLight: 'linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%)',
+    year: '2026',
+  },
 ];
 
 const PILLARS = [
-  { icon: 'Government',     title: 'Government Digital Transformation', desc: 'Partnering with Liberian institutions to build citizen-facing digital portals and e-governance platforms.' },
-  { icon: 'Briefcase',      title: 'Business Digitization',             desc: 'Helping Liberian SMEs establish professional digital presence — websites, platforms, and growth tools.' },
-  { icon: 'Smartphone',     title: 'Mobile-First Development',          desc: 'Building lightweight, offline-capable apps optimized for Liberia\'s connectivity landscape.' },
-  { icon: 'GraduationCap',  title: 'Capacity Building',                 desc: 'Training local professionals in digital skills to create sustainable technology capability within communities.' },
-  { icon: 'Globe',          title: 'Digital Infrastructure',            desc: 'Web applications and cloud deployments designed for reliability in emerging connectivity markets.' },
-  { icon: 'BarChart',       title: 'Digital Marketing',                 desc: 'Helping Liberian businesses reach customers locally, regionally, and internationally.' },
+  { icon: 'Government',    title: 'Government Digital Transformation', desc: 'Partnering with Liberian institutions to build citizen-facing digital portals and e-governance platforms.' },
+  { icon: 'Briefcase',     title: 'Business Digitization',             desc: 'Helping Liberian SMEs establish professional digital presence — websites, platforms, and growth tools.' },
+  { icon: 'Smartphone',    title: 'Mobile-First Development',          desc: "Building lightweight, offline-capable apps optimized for Liberia's connectivity landscape." },
+  { icon: 'GraduationCap', title: 'Capacity Building',                 desc: 'Training local professionals in digital skills to create sustainable technology capability within communities.' },
+  { icon: 'Globe',         title: 'Digital Infrastructure',            desc: 'Web applications and cloud deployments designed for reliability in emerging connectivity markets.' },
+  { icon: 'BarChart',      title: 'Digital Marketing',                 desc: 'Helping Liberian businesses reach customers locally, regionally, and internationally.' },
 ];
 
 const METRICS = [
   { v: '50K+', l: 'Citizens Served',     s: 'Through gov-tech portal'    },
   { v: '2022', l: 'Operations Launched', s: 'In West Africa'              },
   { v: '100%', l: 'Remote Delivery',     s: 'World-class quality anywhere'},
-  { v: '2+',   l: 'Major Projects',      s: 'Liberia-specific platforms'  },
+  { v: '3+',   l: 'Major Projects',      s: 'Liberia-specific platforms'  },
 ];
 
 // ── Case study card ───────────────────────────────────────────────
@@ -179,11 +203,9 @@ function CaseStudyCard({ project, index }) {
   const resultText   = isDark ? '#A1A1AA' : '#374151';
   const dividerColor = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(15,23,42,0.07)';
   const visualBg     = isDark ? project.gradientDark : project.gradientLight;
-  const yearBg       = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(255,255,255,0.80)';
   const yearBorder   = isDark ? 'rgba(255,255,255,0.10)' : 'rgba(15,23,42,0.10)';
   const yearColor    = isDark ? '#A1A1AA' : '#6B7A8D';
   const catColor     = isDark ? '#00C8A8' : '#4A5568';
-  const catBg        = isDark ? 'rgba(0,200,168,0.10)' : 'rgba(15,23,42,0.07)';
   const catBorder    = isDark ? 'rgba(0,200,168,0.20)' : 'transparent';
 
   return (
@@ -199,21 +221,20 @@ function CaseStudyCard({ project, index }) {
         transition: 'background 0.5s ease',
       }}
     >
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(2, 1fr)',
-      }} className="cs-card-grid">
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)' }} className="cs-card-grid">
 
         {/* Visual side */}
-        <div style={{
-          position: 'relative',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          minHeight: '320px', overflow: 'hidden',
-          background: visualBg,
-          order: isEven ? 0 : 1,
-        }} className="cs-visual">
-          {/* Project screenshot */}
-          {project.image ? (
+        <div
+          style={{
+            position: 'relative',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            minHeight: '320px', overflow: 'hidden',
+            background: visualBg,
+            order: isEven ? 0 : 1,
+          }}
+          className="cs-visual"
+        >
+          {project.image && (
             <img
               src={project.image}
               alt={`${project.title} screenshot`}
@@ -225,24 +246,20 @@ function CaseStudyCard({ project, index }) {
               }}
               onError={e => { e.currentTarget.style.display = 'none'; }}
             />
-          ) : null}
-          {/* Fallback icon (shown if no image or image fails) */}
-          <div style={{
-            position: 'relative', zIndex: 2, textAlign: 'center',
-            opacity: project.image ? 0 : 1,
-            pointerEvents: 'none',
-          }}>
+          )}
+          {/* Fallback icon */}
+          <div style={{ position: 'relative', zIndex: 2, textAlign: 'center', pointerEvents: 'none' }}>
             <div style={{
               width: '88px', height: '88px', borderRadius: '24px',
               background: isDark ? 'rgba(0,200,168,0.08)' : 'rgba(0,200,168,0.10)',
               border: '1px solid rgba(0,200,168,0.20)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              margin: '0 auto 20px',
+              margin: '0 auto',
             }}>
               {Icon[project.visualIcon]}
             </div>
           </div>
-          {/* Category badge — always visible over image */}
+          {/* Category badge */}
           <div style={{ position: 'absolute', bottom: '20px', left: '20px', zIndex: 3 }}>
             <span style={{
               display: 'inline-block',
@@ -270,19 +287,20 @@ function CaseStudyCard({ project, index }) {
               {project.year}
             </span>
           </div>
-
         </div>
 
         {/* Content side */}
-        <div style={{
-          padding: '48px 44px',
-          display: 'flex', flexDirection: 'column', justifyContent: 'center',
-          borderLeft: isEven ? `1px solid ${dividerColor}` : 'none',
-          borderRight: isEven ? 'none' : `1px solid ${dividerColor}`,
-          order: isEven ? 1 : 0,
-          transition: 'border-color 0.5s ease',
-        }} className="cs-content">
-
+        <div
+          style={{
+            padding: '48px 44px',
+            display: 'flex', flexDirection: 'column', justifyContent: 'center',
+            borderLeft: isEven ? `1px solid ${dividerColor}` : 'none',
+            borderRight: isEven ? 'none' : `1px solid ${dividerColor}`,
+            order: isEven ? 1 : 0,
+            transition: 'border-color 0.5s ease',
+          }}
+          className="cs-content"
+        >
           {/* Eyebrow */}
           <p style={{
             fontFamily: 'Inter, sans-serif', fontWeight: 600,
@@ -315,15 +333,13 @@ function CaseStudyCard({ project, index }) {
             <h3 style={{
               fontFamily: 'Sora, sans-serif', fontWeight: 700,
               fontSize: '10px', letterSpacing: '0.12em', textTransform: 'uppercase',
-              color: subHeading, marginBottom: '8px',
-              transition: 'color 0.5s ease',
+              color: subHeading, marginBottom: '8px', transition: 'color 0.5s ease',
             }}>
               The Challenge
             </h3>
             <p style={{
               fontFamily: 'Inter, sans-serif', fontSize: '13px',
-              color: bodyColor, lineHeight: 1.7,
-              transition: 'color 0.5s ease',
+              color: bodyColor, lineHeight: 1.7, transition: 'color 0.5s ease',
             }}>
               {project.challenge}
             </p>
@@ -334,15 +350,13 @@ function CaseStudyCard({ project, index }) {
             <h3 style={{
               fontFamily: 'Sora, sans-serif', fontWeight: 700,
               fontSize: '10px', letterSpacing: '0.12em', textTransform: 'uppercase',
-              color: subHeading, marginBottom: '8px',
-              transition: 'color 0.5s ease',
+              color: subHeading, marginBottom: '8px', transition: 'color 0.5s ease',
             }}>
               Our Solution
             </h3>
             <p style={{
               fontFamily: 'Inter, sans-serif', fontSize: '13px',
-              color: bodyColor, lineHeight: 1.7,
-              transition: 'color 0.5s ease',
+              color: bodyColor, lineHeight: 1.7, transition: 'color 0.5s ease',
             }}>
               {project.solution}
             </p>
@@ -374,8 +388,7 @@ function CaseStudyCard({ project, index }) {
                   </div>
                   <span style={{
                     fontFamily: 'Inter, sans-serif', fontSize: '12px',
-                    color: resultText, lineHeight: 1.55,
-                    transition: 'color 0.5s ease',
+                    color: resultText, lineHeight: 1.55, transition: 'color 0.5s ease',
                   }}>
                     {r}
                   </span>
@@ -389,8 +402,7 @@ function CaseStudyCard({ project, index }) {
             <h3 style={{
               fontFamily: 'Sora, sans-serif', fontWeight: 700,
               fontSize: '10px', letterSpacing: '0.12em', textTransform: 'uppercase',
-              color: subHeading, marginBottom: '8px',
-              transition: 'color 0.5s ease',
+              color: subHeading, marginBottom: '8px', transition: 'color 0.5s ease',
             }}>
               Technology
             </h3>
@@ -400,8 +412,7 @@ function CaseStudyCard({ project, index }) {
                   fontFamily: 'Inter, sans-serif', fontSize: '10px',
                   padding: '2px 8px', borderRadius: '5px',
                   background: techBg, border: `1px solid ${techBorder}`,
-                  color: techColor,
-                  transition: 'background 0.5s ease, color 0.5s ease',
+                  color: techColor, transition: 'background 0.5s ease, color 0.5s ease',
                 }}>
                   {t}
                 </span>
@@ -413,21 +424,10 @@ function CaseStudyCard({ project, index }) {
 
       <style>{`
         @media (max-width: 860px) {
-          .cs-card-grid {
-            grid-template-columns: 1fr !important;
-          }
-          .cs-visual, .cs-content {
-            order: unset !important;
-            border-left: none !important;
-            border-right: none !important;
-          }
-          .cs-content {
-            padding: 32px 24px !important;
-          }
-          .cs-visual {
-            min-height: 200px !important;
-            padding: 32px 24px !important;
-          }
+          .cs-card-grid { grid-template-columns: 1fr !important; }
+          .cs-visual, .cs-content { order: unset !important; border-left: none !important; border-right: none !important; }
+          .cs-content { padding: 32px 24px !important; }
+          .cs-visual  { min-height: 200px !important; padding: 32px 24px !important; }
         }
       `}</style>
     </motion.article>
@@ -450,20 +450,18 @@ export default function Liberia() {
 
   return (
     <PageLayout>
-            <Helmet>
+      <Helmet>
         <title>Liberia Digital Services | WebieApp Solutions LLC</title>
         <meta name="description" content="WebieApp Solutions LLC provides specialized digital services for Liberia — government portals, business websites, civic platforms, and digital transformation solutions for West African institutions." />
         <meta name="keywords" content="Liberia digital services, Liberia web development, West Africa digital agency, Liberian government portal, Liberia technology" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://webieapp.com/liberia" />
-
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="WebieApp Solutions LLC" />
         <meta property="og:title" content="Liberia Digital Services — WebieApp Solutions LLC" />
         <meta property="og:description" content="Specialized digital services for Liberia and West Africa — government portals, business websites, and civic platforms." />
         <meta property="og:url" content="https://webieapp.com/liberia" />
         <meta property="og:image" content="https://webieapp.com/og-image.png" />
-
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Liberia Digital Services — WebieApp" />
         <meta name="twitter:description" content="Specialized digital services for Liberia and West Africa — government portals, business websites, and civic platforms." />
@@ -480,16 +478,12 @@ export default function Liberia() {
           background: isDark ? '#1A2535' : '#2B3D52',
         }}
       >
-        {/* Background image */}
         <div aria-hidden style={{
           position: 'absolute', inset: 0,
           backgroundImage: 'url(/about/liberia.jpeg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          backgroundSize: 'cover', backgroundPosition: 'center',
           opacity: isDark ? 0.18 : 0.22,
         }} />
-
-        {/* Teal glow */}
         <div aria-hidden style={{
           position: 'absolute', top: '40%', left: '35%',
           transform: 'translate(-50%, -50%)',
@@ -503,7 +497,6 @@ export default function Liberia() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
-            {/* Eyebrow */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '24px' }}>
               <span style={{ color: '#00C8A8', display: 'flex' }}>{Icon.Flag}</span>
               <span style={{ width: '1px', height: '20px', background: 'rgba(0,200,168,0.4)' }} />
@@ -609,7 +602,6 @@ export default function Liberia() {
         }}
       >
         <div className="container-xl">
-          {/* Section header */}
           <div style={{ textAlign: 'center', marginBottom: '56px' }}>
             <p style={{
               fontFamily: 'Inter, sans-serif', fontWeight: 500,
@@ -661,7 +653,6 @@ export default function Liberia() {
         style={{ background: sectionBg, transition: 'background 0.5s ease' }}
       >
         <div className="container-xl">
-          {/* Section header */}
           <div style={{ textAlign: 'center', marginBottom: '56px' }}>
             <p style={{
               fontFamily: 'Inter, sans-serif', fontWeight: 500,
@@ -674,8 +665,7 @@ export default function Liberia() {
               fontFamily: 'Sora, sans-serif', fontWeight: 800,
               fontSize: 'clamp(2rem, 4.5vw, 3.5rem)',
               letterSpacing: '-0.03em', lineHeight: 1.1,
-              color: headingColor,
-              transition: 'color 0.5s ease',
+              color: headingColor, transition: 'color 0.5s ease',
             }}>
               Our Focus Areas{' '}
               <span style={GS}>in West Africa</span>
@@ -692,9 +682,7 @@ export default function Liberia() {
                 key={p.title}
                 {...fadeUp(i * 0.07)}
                 style={{
-                  background: cardBg,
-                  borderRadius: '16px',
-                  padding: '24px',
+                  background: cardBg, borderRadius: '16px', padding: '24px',
                   border: `1px solid ${cardBorder}`,
                   boxShadow: isDark ? 'none' : '0 1px 3px rgba(0,0,0,0.06)',
                   transition: 'background 0.5s ease, border-color 0.3s ease',
