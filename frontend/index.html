@@ -63,38 +63,29 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <!-- ══════════════════════════════════════════════════════
-         GOOGLE ANALYTICS — GLOBAL SPA SETUP
+         GOOGLE ANALYTICS — GLOBAL SPA SETUP (GA4: G-6RQW6Q6S95)
          Tracks all pages automatically including React Router
-         navigation via the 'page_view' event.
-
-         TO ACTIVATE:
-         1. Replace G-XXXXXXXXXX with your real GA4 Measurement ID
-         2. Remove the HTML comment wrappers around both script tags
-         3. Save and deploy — all pages will be tracked instantly
-
-         Your GA4 ID format: G-XXXXXXXXXX
-         Find it: analytics.google.com → Admin → Data Streams → Web
+         navigation via the 'page_view' event fired by the
+         useGAPageTracking hook in App.jsx.
     ══════════════════════════════════════════════════════ -->
 
     <!-- Step 1: Load the GA4 library -->
-    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script> -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6RQW6Q6S95"></script>
 
     <!-- Step 2: Initialize and configure GA4 with SPA page tracking -->
-    <!-- <script>
+    <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){ dataLayer.push(arguments); }
       gtag('js', new Date());
 
-      // Replace G-XXXXXXXXXX with your actual Measurement ID
-      gtag('config', 'G-XXXXXXXXXX', {
-        // send_page_view: false disables the default pageview on load.
-        // React Router will manually fire page_view on each navigation
-        // via the useGAPageTracking hook in App.jsx (see below).
-        // Set to true if you do NOT add the hook — GA will only track
-        // the initial load and miss all client-side navigations.
+      // send_page_view: false — initial pageview is suppressed here.
+      // React Router fires page_view on every navigation via
+      // the useGAPageTracking hook in App.jsx, which handles
+      // both the first load and all subsequent client-side navigations.
+      gtag('config', 'G-6RQW6Q6S95', {
         send_page_view: false
       });
-    </script> -->
+    </script>
 
     <!-- ⚡ NO-FLICKER theme init — runs before React hydrates -->
     <script>

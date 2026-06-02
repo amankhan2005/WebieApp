@@ -6,8 +6,8 @@
 // ── Navigation ──────────────────────────────────────────────────
 export const NAV_LINKS = [
   { label: 'Home',              path: '/' },
-  { label: 'About',             path: '/about' },
-  { label: 'Services',          path: '/services' },
+  { label: 'About',             path: '/about-us' },
+  { label: 'Services',          path: '/our-services' },
   { label: 'Portfolio',         path: '/portfolio' },
   { label: 'Autism Consulting', path: '/autism-consulting' },
   { label: 'Liberia',           path: '/liberia' },

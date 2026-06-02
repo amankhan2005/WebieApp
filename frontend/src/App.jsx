@@ -102,8 +102,8 @@ function AppRoutes() {
           key={location.pathname + location.search}
         >
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
+          <Route path="/about-us" element={<About />} />
+          <Route path="/our-services" element={<Services />} />
           <Route path="/portfolio" element={<Portfolio />} />
 
           <Route

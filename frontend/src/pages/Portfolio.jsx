@@ -684,7 +684,7 @@ export default function Portfolio() {
             </p>
 
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', justifyContent: 'center' }}>
-              <Button to="/services" variant="primary" size="lg" iconRight={<ArrowRight />}>
+              <Button to="/our-services" variant="primary" size="lg" iconRight={<ArrowRight />}>
                 Our Services
               </Button>
               <Button to="/contact" variant="white" size="lg">

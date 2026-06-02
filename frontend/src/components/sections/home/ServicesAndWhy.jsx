@@ -261,7 +261,7 @@ function ServiceCard({ svc, index, isDark }) {
   return (
     <motion.article {...fadeUp(index)} className="group">
       <Link
-        to={`/services#${svc.id}`}
+        to={`/our-services#${svc.id}`}
         className="flex flex-col h-full rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1"
         style={{
           background: cardBg,
@@ -530,7 +530,7 @@ export function WhyChooseUs() {
             </p>
 
             <div className="flex flex-wrap gap-3 mt-8">
-              <Button to="/about" variant="primary" size="md" iconRight={<ArrowRight />}>
+              <Button to="/about-us" variant="primary" size="md" iconRight={<ArrowRight />}>
                 About Our Agency
               </Button>
               <Button to="/contact" variant="ghost" size="md">

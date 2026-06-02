@@ -4,9 +4,9 @@ import { COMPANY, SERVICES } from '../../data/siteData.js';
 import Button, { ArrowRight } from '../ui/Button.jsx';
 
 const FOOTER_LINKS = {
-  Services: SERVICES.map(s => ({ label: s.title, path: `/services` })),
+  Services: SERVICES.map(s => ({ label: s.title, path: `/our-services` })),
   Company: [
-    { label: 'About Us',          path: '/about' },
+    { label: 'About Us',          path: '/about-us' },
     { label: 'Portfolio',         path: '/portfolio' },
     { label: 'Autism Consulting', path: '/autism-consulting' },
     { label: 'Liberia Projects',  path: '/liberia' },
@@ -110,7 +110,7 @@ export default function Footer() {
               <Button to="/contact" variant="primary" size="lg" iconRight={<ArrowRight />}>
                 Book Free Consultation
               </Button>
-              <Button to="/services" variant="ghost" size="lg">
+              <Button to="/our-services" variant="ghost" size="lg">
                 Explore Services
               </Button>
             </div>
