@@ -189,7 +189,7 @@ export default function Footer() {
 
             {/* Email */}
             <a
-              href="mailto:webieapp@gmail.com"
+              href="mailto:info@webieapp.com"
               style={{
                 display: 'inline-flex', alignItems: 'center', gap: '8px',
                 fontFamily: 'Inter, sans-serif', fontSize: '12px',
@@ -203,7 +203,7 @@ export default function Footer() {
                 <rect x="2" y="4" width="20" height="16" rx="2"/>
                 <path d="m2 7 10 7 10-7"/>
               </svg>
-              webieapp@gmail.com
+              info@webieapp.com
             </a>
           </div>
 

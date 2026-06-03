@@ -833,7 +833,7 @@ export function FinalCTA() {
               <Button to="/contact" variant="primary" size="xl" iconRight={<ArrowRight />}>
                 Book Free Consultation
               </Button>
-              <Button to="/services" variant="white" size="xl">
+              <Button to="/our-services" variant="white" size="xl">
                 Explore Services
               </Button>
             </div>

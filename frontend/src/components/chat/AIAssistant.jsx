@@ -172,7 +172,7 @@ const KB = {
 
   contact: {
     keywords: ['contact', 'email', 'reach', 'talk', 'speak', 'call', 'schedule', 'book', 'consultation', 'get in touch', 'phone', 'message', 'connect', 'meeting', 'discuss', 'start a project', 'work with you', 'hire', 'quote', 'proposal', 'free consultation', 'discovery call'],
-    response: "The best ways to reach us:\n\nEmail: webieapp@gmail.com\nContact form: webieapp.com/contact\nABA consulting calls: webieapp.com/autism-consulting\n\nWe typically respond within one business day. For discovery calls, we'll ask about your project goals, timeline, and budget before making any recommendations — no pressure, no pitch.",
+    response: "The best ways to reach us:\n\nEmail: info@webieapp.com\nContact form: webieapp.com/contact\nABA consulting calls: webieapp.com/autism-consulting\n\nWe typically respond within one business day. For discovery calls, we'll ask about your project goals, timeline, and budget before making any recommendations — no pressure, no pitch.",
   },
 
   pricing: {
@@ -267,7 +267,7 @@ const PAGE_GREETINGS = {
   '/services':          "Hi. I can walk you through any of our services in detail — websites, SaaS platforms, SEO, design, marketing, or ABA consulting. What are you considering?",
   '/about':             "Hi. Happy to answer questions about our team, how we work, our background, or why clients choose us. What would you like to know?",
   '/portfolio':         "Hi. You're browsing our portfolio — 120+ projects across healthcare, SaaS, autism services, government, and more. Is there a particular type of project or client you're curious about?",
-  '/contact':           "Hi. If you have questions before reaching out, I can help. Otherwise, the contact form or webieapp@gmail.com works well — we usually respond within one business day.",
+  '/contact':           "Hi. If you have questions before reaching out, I can help. Otherwise, the contact form or info@webieapp.com works well — we usually respond within one business day.",
   '/autism-consulting': "Hi. You're looking at our ABA and autism consulting services — this is one of our deepest specialties. We've helped BCBAs and healthcare entrepreneurs across the US launch and grow practices. What stage is your project at?",
   '/liberia':           "Hi. You're on our Liberia page. We've done significant digital infrastructure work across Liberia — government portals, business digitization, logistics, and more. What are you exploring?",
 };
@@ -406,7 +406,7 @@ function reducer(state, action) {
 // ── Format message with inline links ─────────────────────────────
 function formatMessage(text) {
   return text.split('\n').map((line, i, arr) => {
-    const parts = line.split(/(webieapp\.com\/[\w-]+|webieapp@gmail\.com)/g);
+    const parts = line.split(/(webieapp\.com\/[\w-]+|info@webieapp\.com)/g);
     const rendered = parts.map((part, j) => {
       if (/^webieapp\.com\//.test(part)) {
         return (
@@ -416,7 +416,7 @@ function formatMessage(text) {
           </a>
         );
       }
-      if (/^webieapp@gmail\.com$/.test(part)) {
+      if (/^info@webieapp\.com$/.test(part)) {
         return (
           <a key={j} href={`mailto:${part}`}
             style={{ color: '#00C8A8', textDecoration: 'none', borderBottom: '1px solid rgba(0,200,168,0.3)', paddingBottom: '1px', fontSize: 'inherit' }}>

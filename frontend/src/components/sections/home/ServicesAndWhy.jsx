@@ -415,7 +415,7 @@ export function ServicesGrid() {
         </div>
 
         <motion.div {...fadeUp(0.5)} style={{ marginTop: '40px', textAlign: 'center' }}>
-          <Button to="/services" variant="primary" size="md" iconRight={<ArrowRight />}>
+          <Button to="/our-services" variant="primary" size="md" iconRight={<ArrowRight />}>
             Explore All Services
           </Button>
         </motion.div>

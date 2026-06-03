@@ -20,7 +20,7 @@ export const COMPANY = {
   tagline:      'Premium Digital Solutions. Enterprise Execution.',
   description:  'A US-registered technology and digital consultancy delivering bespoke web products, SaaS platforms, and specialized Autism & ABA business consulting to clients across the globe.',
   registration: 'Registered in Kentucky, USA',
-  email:        'webieapp@gmail.com',
+  email:        'info@webieapp.com',
   phone:        '',
   offices: {
     usa: {
