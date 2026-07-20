@@ -59,6 +59,24 @@ const Icon = {
   ),
 };
 
+// ── Math CAPTCHA generator ────────────────────────────────────────
+function generateCaptcha() {
+  const rand = () => Math.floor(Math.random() * 10) + 1; // 1–10
+  const isAddition = Math.random() < 0.5;
+
+  if (isAddition) {
+    const a = rand();
+    const b = rand();
+    return { question: `${a} + ${b}`, answer: a + b };
+  }
+
+  // Subtraction — order operands so the answer is never negative
+  let a = rand();
+  let b = rand();
+  if (b > a) [a, b] = [b, a];
+  return { question: `${a} - ${b}`, answer: a - b };
+}
+
 // ── Field component ───────────────────────────────────────────────
 function Field({ label, required, error, children, hint, isDark }) {
   const labelColor = isDark ? '#A1A1AA' : '#4B5563';
@@ -177,6 +195,12 @@ function ContactForm({ isDark }) {
   const [serverError, setServerError] = useState('');
   const [focused, setFocused]         = useState('');
 
+  const [captcha, setCaptcha]           = useState(generateCaptcha);
+  const [captchaInput, setCaptchaInput] = useState('');
+  const [captchaError, setCaptchaError] = useState('');
+
+  const isCaptchaValid = captchaInput.trim() !== '' && Number(captchaInput) === captcha.answer;
+
   const {
     register,
     handleSubmit,
@@ -184,11 +208,33 @@ function ContactForm({ isDark }) {
     reset,
   } = useForm({ resolver: zodResolver(schema) });
 
+  const handleCaptchaChange = (e) => {
+    const value = e.target.value;
+    setCaptchaInput(value);
+
+    if (value.trim() === '') {
+      setCaptchaError('');
+    } else if (Number(value) === captcha.answer) {
+      setCaptchaError('');
+    } else {
+      setCaptchaError('Incorrect answer. Please try again.');
+    }
+  };
+
   const onSubmit = async (data) => {
     setServerError('');
+
+    if (Number(captchaInput) !== captcha.answer) {
+      setCaptchaError('Incorrect answer. Please try again.');
+      return;
+    }
+
     try {
       await axios.post(`${API_URL}/api/contact`, data);
       setSubmitted(true);
+      setCaptcha(generateCaptcha());
+      setCaptchaInput('');
+      setCaptchaError('');
     } catch {
       setServerError('Something went wrong. Please email us directly at webieapp@gmail.com or try again later.');
     }
@@ -224,6 +270,18 @@ function ContactForm({ isDark }) {
       boxShadow: '0 0 0 3px rgba(0,200,168,0.08)',
     } : {}),
   });
+
+  const captchaInputStyle = {
+    ...inputBase,
+    ...(captchaError ? {
+      borderColor: 'rgba(248,113,113,0.5)',
+      boxShadow: '0 0 0 3px rgba(248,113,113,0.08)',
+    } : {}),
+    ...(focused === 'captcha' && !captchaError ? {
+      borderColor: 'rgba(0,200,168,0.45)',
+      boxShadow: '0 0 0 3px rgba(0,200,168,0.08)',
+    } : {}),
+  };
 
   const fp = (name) => ({
     onFocus: () => setFocused(name),
@@ -301,6 +359,43 @@ function ContactForm({ isDark }) {
         />
       </Field>
 
+      <Field label="Human Verification" required error={captchaError} isDark={isDark}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <div
+            aria-hidden
+            style={{
+              flexShrink: 0,
+              height: '48px',
+              padding: '0 16px',
+              display: 'flex',
+              alignItems: 'center',
+              borderRadius: '12px',
+              background: 'rgba(0,200,168,0.06)',
+              border: '1px solid rgba(0,200,168,0.18)',
+              fontFamily: 'Sora, sans-serif',
+              fontWeight: 700,
+              fontSize: '15px',
+              color: '#00C8A8',
+              whiteSpace: 'nowrap',
+              userSelect: 'none',
+            }}
+          >
+            {captcha.question} = ?
+          </div>
+          <input
+            type="text"
+            inputMode="numeric"
+            value={captchaInput}
+            onChange={handleCaptchaChange}
+            placeholder="Answer"
+            autoComplete="off"
+            aria-label={`Human verification: what is ${captcha.question}?`}
+            style={{ ...captchaInputStyle, flex: 1 }}
+            {...fp('captcha')}
+          />
+        </div>
+      </Field>
+
       <AnimatePresence>
         {serverError && (
           <motion.div
@@ -325,7 +420,12 @@ function ContactForm({ isDark }) {
         type="submit"
         variant="primary"
         size="lg"
-        style={{ width: '100%', justifyContent: 'center' }}
+        style={{
+          width: '100%',
+          justifyContent: 'center',
+          ...(!isCaptchaValid && !isSubmitting ? { opacity: 0.55, cursor: 'not-allowed' } : {}),
+        }}
+        disabled={isSubmitting || !isCaptchaValid}
         loading={isSubmitting}
         iconRight={!isSubmitting ? <ArrowRight /> : undefined}
       >
