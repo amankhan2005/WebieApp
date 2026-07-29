@@ -6,9 +6,86 @@
     <meta name="theme-color" content="#00C8A8" />
     <meta name="color-scheme" content="light dark" />
     <link rel="icon" type="image/svg+xml" href="/favicon.png" />
-    <title>WebieApp Solutions LLC</title>
+    <title>WebieApp Solutions LLC — Premium Digital Solutions & ABA Consulting</title>
+
+    <!-- ── SEO Base Meta ─────────────────────────────────── -->
+    <meta name="description" content="WebieApp Solutions LLC — A US-registered technology consultancy delivering bespoke websites, SaaS platforms, and specialized Autism & ABA business consulting to clients worldwide." />
+    <meta name="keywords" content="web development, SaaS development, ABA consulting, autism clinic, digital marketing, SEO, UI/UX design, WebieApp Solutions" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="WebieApp Solutions LLC" />
+    <link rel="canonical" href="https://webieapp.com/" />
+
+    <!-- ── Open Graph ─────────────────────────────────────── -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="WebieApp Solutions LLC" />
+    <meta property="og:title" content="WebieApp Solutions LLC — Premium Digital Solutions & ABA Consulting" />
+    <meta property="og:description" content="Bespoke websites, SaaS platforms, and specialized Autism & ABA business consulting. US-registered. 120+ projects. 12+ countries." />
+    <meta property="og:url" content="https://webieapp.com/" />
+    <meta property="og:image" content="https://webieapp.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- ── Twitter / X ────────────────────────────────────── -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@webieapp" />
+    <meta name="twitter:title" content="WebieApp Solutions LLC — Premium Digital Solutions" />
+    <meta name="twitter:description" content="Bespoke web products, SaaS platforms, and Autism & ABA business consulting. US-registered agency." />
+    <meta name="twitter:image" content="https://webieapp.com/og-image.png" />
+
+    <!-- ── Structured Data ───────────────────────────────── -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "WebieApp Solutions LLC",
+      "url": "https://webieapp.com",
+      "logo": "https://webieapp.com/favicon.png",
+      "description": "US-registered technology consultancy delivering bespoke web products, SaaS platforms, and Autism & ABA business consulting.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "212 N. 2nd St. STE 100",
+        "addressLocality": "Richmond",
+        "addressRegion": "KY",
+        "postalCode": "40475",
+        "addressCountry": "US"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "webieapp@gmail.com",
+        "contactType": "customer service"
+      },
+      "sameAs": []
+    }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- ══════════════════════════════════════════════════════
+         GOOGLE ANALYTICS — GLOBAL SPA SETUP (GA4: G-6RQW6Q6S95)
+         Tracks all pages automatically including React Router
+         navigation via the 'page_view' event fired by the
+         useGAPageTracking hook in App.jsx.
+    ══════════════════════════════════════════════════════ -->
+
+    <!-- Step 1: Load the GA4 library -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6RQW6Q6S95"></script>
+
+    <!-- Step 2: Initialize and configure GA4 with SPA page tracking -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      gtag('js', new Date());
+
+      // send_page_view: false — initial pageview is suppressed here.
+      // React Router fires page_view on every navigation via
+      // the useGAPageTracking hook in App.jsx, which handles
+      // both the first load and all subsequent client-side navigations.
+      gtag('config', 'G-6RQW6Q6S95', {
+        send_page_view: false
+      });
+    </script>
 
     <!-- ⚡ NO-FLICKER theme init — runs before React hydrates -->
     <script>
@@ -17,15 +94,14 @@
           var saved = localStorage.getItem('webie-theme');
           var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
           document.documentElement.setAttribute('data-theme', theme);
-          // Set initial bg to prevent white flash in dark mode
           if (theme === 'dark') {
-            document.documentElement.style.backgroundColor = '#0B0F14';
+            document.documentElement.style.backgroundColor = '#111823';
           }
         } catch(e) {}
       })();
     </script>
-    <script type="module" crossorigin src="/assets/index-ByJvMEbU.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-CiY67X1y.css">
+    <script type="module" crossorigin src="/assets/main-BmHLfeEG.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/main-Dj_3sHIM.css">
   </head>
   <body>
     <div id="root"></div>
