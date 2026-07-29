@@ -2,6 +2,17 @@
   publish = "dist"
   command = "npm run build"
 
+# ── SEO: serve the static, crawler-readable HTML for the ABA page ──
+# This rewrite (status 200) keeps the URL as /autism-consulting while
+# returning autism-consulting.html, which carries the correct static
+# <title>, meta description and Open Graph tags. Must come BEFORE the
+# SPA catch-all so it takes precedence.
+[[redirects]]
+  from = "/autism-consulting"
+  to = "/autism-consulting.html"
+  status = 200
+
+# ── SPA fallback for every other client-side route ────────────────
 [[redirects]]
   from = "/*"
   to = "/index.html"
