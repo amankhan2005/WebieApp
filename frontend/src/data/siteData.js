@@ -409,6 +409,18 @@ export const AUTISM_FAQS = [
     q: 'Do you help with insurance credentialing guidance?',
     a: 'We provide guidance on the business and operational aspects. For clinical compliance and credentialing specifics, we work alongside your compliance advisors to ensure your digital systems align with requirements.',
   },
+  {
+    q: 'Do you support both clinic-based and home-based ABA models?',
+    a: 'Absolutely. Whether you\'re opening a center-based clinic, running a home-based (in-home) practice, or blending both, we tailor your business model, scheduling systems, mileage/payroll setup, and website messaging to fit the delivery model you choose.',
+  },
+  {
+    q: 'Can you set up the page and campaigns to run Google & Meta ads?',
+    a: 'Yes. We build conversion-focused landing pages with lead-capture forms, proper tracking (GA4 and Meta Pixel), and ad-ready copy — then help structure Google Ads and Meta campaigns so you can turn ad spend into booked discovery calls.',
+  },
+  {
+    q: 'Do you handle billing, payroll, and credentialing setup too?',
+    a: 'We help stand up the systems and workflows behind them — revenue-cycle tooling, timesheet and mileage tracking, payroll setup, and credentialing trackers (NPI, CAQH, payer enrollment) — and coordinate with your billing and compliance specialists where clinical sign-off is required.',
+  },
 ];
 
 // ── Why Choose Us ─────────────────────────────────────────────────
@@ -468,4 +480,137 @@ export const CONTACT_SERVICES = [
   'Autism & ABA Consulting',
   'Multiple Services',
   'Other / Not Sure Yet',
+];
+
+// ══════════════════════════════════════════════════════════════════
+//  ABA CONSULTING — LANDING PAGE DATA
+//  Derived from the internal "ABA Company Launch Blueprint" and
+//  rewritten for public-facing marketing use.
+// ══════════════════════════════════════════════════════════════════
+
+// ── 10-Phase Launch Roadmap (from blueprint phases 1–10) ──────────
+export const ABA_ROADMAP = [
+  {
+    phase: '01',
+    title: 'Business Formation',
+    desc:  'Entity structure, state & service-model selection, LLC registration, EIN, registered agent, operating agreement, business banking and financial planning.',
+    items: ['LLC & EIN', 'Registered Agent', 'Operating Agreement', 'Business Banking'],
+  },
+  {
+    phase: '02',
+    title: 'Branding & Digital Presence',
+    desc:  'Logo and brand guidelines, domain, a HIPAA-aware website, professional email, business phone & fax, Google Business Profile and social channels — with analytics and Meta Pixel wired in.',
+    items: ['Logo & Brand Kit', 'Website', 'Google Business', 'Social + Analytics'],
+  },
+  {
+    phase: '03',
+    title: 'Technology Infrastructure',
+    desc:  'Clinical software (Motivity / CentralReach), HR & payroll, CRM, secure cloud storage, project management, team communication, AI automation, plus security and backup.',
+    items: ['Clinical Software', 'CRM', 'Cloud & Backup', 'AI Automation'],
+  },
+  {
+    phase: '04',
+    title: 'Legal & Compliance',
+    desc:  'HIPAA and OSHA readiness, employee handbook, privacy policy and terms, and the liability, professional, cyber and workers-comp coverage a compliant practice needs.',
+    items: ['HIPAA / OSHA', 'Policies & Handbook', 'Insurance Coverage'],
+  },
+  {
+    phase: '05',
+    title: 'Documentation',
+    desc:  'Complete employment package (offers, agreements, NDA, HIPAA, I-9/W-4, background checks) and parent package (intake, consents, insurance, handbook) — as fillable PDF forms.',
+    items: ['Employment Forms', 'Parent Intake Pack', 'Fillable PDFs'],
+  },
+  {
+    phase: '06',
+    title: 'Clinical Operations',
+    desc:  'Assessment templates, treatment plans, SOAP and supervision notes, parent-training documentation, progress reports, discharge summaries, clinical SOPs and QA audits.',
+    items: ['Treatment Plans', 'SOAP Notes', 'Clinical SOPs', 'QA Audits'],
+  },
+  {
+    phase: '07',
+    title: 'Hiring & Credentialing',
+    desc:  'Recruit your clinical director, BCBAs, BCaBAs, RBTs and support staff — plus NPI, CAQH and payer enrollment (BCBS, Aetna, Cigna, Optum, Medicaid) with renewal tracking.',
+    items: ['Recruit BCBA / RBT', 'NPI & CAQH', 'Payer Enrollment', 'Renewal Tracking'],
+  },
+  {
+    phase: '08',
+    title: 'Marketing & Client Acquisition',
+    desc:  'Google Ads, Meta campaigns, SEO, social and email marketing, plus physician outreach and school partnerships — feeding a clean lead → verification → authorization → therapy pipeline.',
+    items: ['Google & Meta Ads', 'SEO & Social', 'Physician Outreach', 'Lead Pipeline'],
+  },
+  {
+    phase: '09',
+    title: 'Billing & Payroll',
+    desc:  'A full revenue cycle — session, documentation, claim submission, ERA, payment — with payroll covering timesheets, mileage, bonuses, taxes, quarterly filing and reporting.',
+    items: ['Revenue Cycle', 'Claims & ERA', 'Payroll & Taxes', 'Reporting'],
+  },
+  {
+    phase: '10',
+    title: 'Scale',
+    desc:  'Open additional locations, expand into new states, win school contracts, add telehealth, deepen AI automation, and run KPI dashboards with monthly business reviews.',
+    items: ['New Locations', 'New States', 'Telehealth', 'KPI Dashboards'],
+  },
+];
+
+// ── Service Portfolio (from blueprint "Service Portfolio") ────────
+export const ABA_SERVICE_PORTFOLIO = [
+  { icon: 'Building',   title: 'Business Formation' },
+  { icon: 'Palette',    title: 'Branding & Design' },
+  { icon: 'Globe',      title: 'Website Development' },
+  { icon: 'Settings',   title: 'Custom Software' },
+  { icon: 'Users',      title: 'ABA CRM' },
+  { icon: 'FileText',   title: 'Billing Solutions' },
+  { icon: 'Shield',     title: 'Credentialing' },
+  { icon: 'Megaphone',  title: 'Digital Marketing' },
+  { icon: 'TrendingUp', title: 'HR & Payroll' },
+  { icon: 'Settings',   title: 'AI Solutions' },
+  { icon: 'Clock',      title: 'Maintenance & Support' },
+];
+
+// ── Launch Checklist (from blueprint "Launch Checklist") ──────────
+export const ABA_LAUNCH_CHECKLIST = [
+  'LLC & EIN', 'Logo & Brand', 'Business Phone & Fax', 'HIPAA-Aware Website',
+  'Clinical Software', 'Social Media', 'Professional Email', 'Google Business Profile',
+  'Company Documentation', 'Liability Insurance', 'Hire BCBA', 'BCBA Bonus Program',
+  'Employment Forms', 'Parent Intake Forms', 'Insurance Credentialing', 'Meta & Google Campaigns',
+  'Hire RBTs / Therapists', 'Software Training', 'Billing Setup', 'Payroll & Taxes',
+  'Quality Assurance', 'Scale-Up Plan',
+];
+
+// ── Landing-page stat band ────────────────────────────────────────
+export const ABA_STATS = [
+  { value: 'All 50', label: 'US States Served' },
+  { value: '60–120', label: 'Day Launch Timeline' },
+  { value: '10',     label: 'Phase Launch Program' },
+  { value: '100%',   label: 'HIPAA-Aware Systems' },
+];
+
+// ── Testimonials (representative ABA client outcomes) ─────────────
+export const ABA_TESTIMONIALS = [
+  {
+    quote: 'WebieApp handled everything on the business and digital side so we could focus purely on our clients. We went from an idea to an open, credentialed practice without getting lost in the paperwork.',
+    name:  'Clinical Director',
+    role:  'Center-Based ABA Practice',
+  },
+  {
+    quote: 'The website and lead form started bringing in real inquiries within weeks of our ads going live. Their setup made it easy to turn ad clicks into booked discovery calls.',
+    name:  'Founder & BCBA',
+    role:  'Home-Based ABA Provider',
+  },
+  {
+    quote: 'Having one partner coordinate branding, credentialing systems, billing and payroll saved us months. The roadmap gave us a clear, calm path to launch.',
+    name:  'Owner',
+    role:  'Multi-State ABA Group',
+  },
+];
+
+// ── US States (for the optional lead-form dropdown) ───────────────
+export const US_STATES = [
+  'Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware',
+  'Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky',
+  'Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi',
+  'Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico',
+  'New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania',
+  'Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont',
+  'Virginia','Washington','West Virginia','Wisconsin','Wyoming','Washington D.C.',
 ];

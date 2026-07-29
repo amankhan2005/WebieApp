@@ -1,0 +1,15 @@
+# WebieApp Solutions LLC — robots.txt
+User-agent: *
+Allow: /
+
+# Allow social & ads crawlers full access for link previews
+User-agent: facebookexternalhit
+Allow: /
+User-agent: Twitterbot
+Allow: /
+User-agent: LinkedInBot
+Allow: /
+User-agent: WhatsApp
+Allow: /
+
+Sitemap: https://webieapp.com/sitemap.xml

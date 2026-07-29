@@ -69,7 +69,7 @@ app.get('/', (req, res) => {
     version: '2.0.0',
     status:  'running',
     docs:    '/api/health',
-    routes:  ['POST /api/contact', 'GET /api/health'],
+    routes:  ['POST /api/contact', 'POST /api/lead', 'GET /api/health'],
   });
 });
 

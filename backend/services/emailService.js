@@ -240,4 +240,108 @@ async function sendContactConfirmationEmail({ name, email, service }) {
   });
 }
 
-module.exports = { sendContactAdminEmail, sendContactConfirmationEmail };
+// ── LEAD: ADMIN NOTIFICATION (quick-capture landing form) ─────────
+async function sendLeadAdminEmail({ name, email, phone, company, state, sourcePage, utmSource, utmMedium, utmCampaign }) {
+  const submittedAt = new Date().toLocaleString('en-US', {
+    timeZone: 'America/New_York', weekday: 'short', year: 'numeric',
+    month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', timeZoneName: 'short',
+  });
+
+  const utm = [utmSource, utmMedium, utmCampaign].filter(Boolean).join(' / ');
+
+  const html = shell(`
+    <h1 style="font-size:22px;font-weight:800;color:${B.text};margin:0 0 4px;">🔥 New Landing-Page Lead</h1>
+    <p style="font-size:13px;color:${B.muted};margin:0 0 24px;">${submittedAt}</p>
+
+    <div style="margin-bottom:24px;">
+      ${badge('HIGH')}
+      <span style="background:${B.primaryDim};color:${B.primary};border:1px solid ${B.primaryBdr};padding:4px 14px;border-radius:20px;font-size:11px;font-weight:700;margin-left:8px;">⚡ CALL WITHIN 24H</span>
+    </div>
+
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px;">
+      ${row('Full Name',    name)}
+      ${row('Phone Number', phone)}
+      ${row('Email Address', email)}
+      ${row('Company / Clinic', company || '—')}
+      ${row('State',        state || '—')}
+      ${row('Source Page',  sourcePage || '/autism-consulting')}
+      ${row('Campaign',     utm || '—')}
+      ${row('Submitted At', submittedAt)}
+    </table>
+
+    <a href="tel:${(phone || '').replace(/[^+\d]/g, '')}"
+       style="display:inline-block;background:${B.primary};color:${B.dark};font-weight:700;font-size:14px;padding:13px 28px;border-radius:10px;text-decoration:none;margin-right:8px;">
+      Call ${name} →
+    </a>
+    <a href="mailto:${email}?subject=Your ABA Clinic Consultation — WebieApp"
+       style="display:inline-block;background:transparent;color:${B.primary};border:1px solid ${B.primaryBdr};font-weight:700;font-size:14px;padding:12px 24px;border-radius:10px;text-decoration:none;">
+      Email ${name}
+    </a>
+  `);
+
+  return sendEmail({
+    from:    `${ENV.FROM_NAME} <${ENV.FROM_EMAIL}>`,
+    to:      ENV.ADMIN_EMAIL,
+    subject: `🔥 New ABA Lead: ${name}${state ? ` (${state})` : ''}`,
+    html,
+  });
+}
+
+// ── LEAD: USER CONFIRMATION ───────────────────────────────────────
+async function sendLeadConfirmationEmail({ name, email }) {
+  const html = shell(`
+    <div style="text-align:center;margin-bottom:32px;">
+      <div style="width:68px;height:68px;background:${B.primaryDim};border:2px solid ${B.primaryBdr};border-radius:50%;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;">
+        <span style="font-size:30px;line-height:68px;display:block;">✓</span>
+      </div>
+      <h1 style="font-size:24px;font-weight:800;color:${B.text};margin:0 0 10px;">Thanks, ${name}!</h1>
+      <p style="font-size:15px;color:${B.muted};line-height:1.65;margin:0;">
+        We've received your details about launching a <strong style="color:${B.primary};">Clinic or Home-Based ABA</strong> practice.
+        A member of our team will reach out within one business day to schedule your free discovery call.
+      </p>
+    </div>
+
+    <div style="background:${B.primaryDim};border:1px solid ${B.primaryBdr};border-radius:14px;padding:22px;margin-bottom:28px;text-align:center;">
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:1.2px;color:${B.muted};margin-bottom:6px;">We'll Contact You In</div>
+      <div style="font-size:26px;font-weight:800;color:${B.primary};">Under 24 Hours</div>
+    </div>
+
+    <div style="margin-bottom:28px;">
+      <div style="font-size:13px;font-weight:700;color:${B.text};margin-bottom:14px;text-transform:uppercase;letter-spacing:0.5px;">What Happens Next</div>
+      <table width="100%" cellpadding="0" cellspacing="0">
+        ${[
+          ['📞', 'Discovery Call', 'A relaxed 45-minute call about your vision, timeline, and goals — no pressure.'],
+          ['🗺️', 'Custom Roadmap', 'We map your path from business formation to your first authorized client.'],
+          ['🚀', 'Launch Plan', 'You receive a clear, transparent plan with scope, timeline, and pricing.'],
+        ].map(([icon, title, text]) => `
+        <tr>
+          <td style="vertical-align:top;padding:0 12px 16px 0;width:36px;"><div style="font-size:20px;">${icon}</div></td>
+          <td style="vertical-align:top;padding-bottom:16px;">
+            <div style="font-size:13px;font-weight:700;color:${B.text};margin-bottom:2px;">${title}</div>
+            <div style="font-size:13px;color:${B.muted};line-height:1.6;">${text}</div>
+          </td>
+        </tr>`).join('')}
+      </table>
+    </div>
+
+    ${divider}
+
+    <p style="font-size:13px;color:${B.muted};line-height:1.7;margin:0;">
+      Have a quick question in the meantime? Just reply to this email — we read every message.
+    </p>
+  `);
+
+  return sendEmail({
+    from:    `${ENV.FROM_NAME} <${ENV.FROM_EMAIL}>`,
+    to:      email,
+    subject: `We've got your details, ${name} — WebieApp ABA Consulting`,
+    html,
+  });
+}
+
+module.exports = {
+  sendContactAdminEmail,
+  sendContactConfirmationEmail,
+  sendLeadAdminEmail,
+  sendLeadConfirmationEmail,
+};

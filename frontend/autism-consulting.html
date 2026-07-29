@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#00C8A8" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
+
+    <!-- ══════════════════════════════════════════════════════════════
+         STATIC, CRAWLER-READABLE SEO FOR /autism-consulting
+         Social crawlers (WhatsApp, Facebook, LinkedIn, X) do NOT run
+         JavaScript, so react-helmet-async alone can't drive link
+         previews. This file is served for /autism-consulting via a
+         Netlify rewrite so crawlers get the correct title/description/
+         image immediately. React still mounts and hydrates as normal.
+    ══════════════════════════════════════════════════════════════ -->
+    <title>Clinic &amp; Home-Based ABA Consulting | Launch Your Practice — WebieApp</title>
+
+    <meta name="description" content="Launch your clinic or home-based ABA therapy practice with WebieApp Solutions LLC. End-to-end consulting: business formation, credentialing, HIPAA-aware website, billing, payroll & marketing. Serving BCBAs across all 50 US states. Book a free discovery call." />
+    <meta name="keywords" content="ABA clinic consulting, home-based ABA, autism clinic startup, BCBA business consulting, ABA therapy website, ABA credentialing, ABA billing, autism clinic digital marketing, start an ABA practice" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="author" content="WebieApp Solutions LLC" />
+    <link rel="canonical" href="https://webieapp.com/autism-consulting" />
+
+    <!-- ── Open Graph ─────────────────────────────────────── -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="WebieApp Solutions LLC" />
+    <meta property="og:title" content="Clinic & Home-Based ABA Consulting — Launch Your Practice" />
+    <meta property="og:description" content="End-to-end consulting for ABA practices: business formation, credentialing, HIPAA-aware website, billing, payroll & marketing. All 50 US states. Free discovery call." />
+    <meta property="og:url" content="https://webieapp.com/autism-consulting" />
+    <meta property="og:image" content="https://webieapp.com/og-autism-consulting.png" />
+    <meta property="og:image:secure_url" content="https://webieapp.com/og-autism-consulting.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="WebieApp — Clinic & Home-Based ABA Therapy Consulting" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- ── Twitter / X ────────────────────────────────────── -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@webieapp" />
+    <meta name="twitter:title" content="Clinic & Home-Based ABA Consulting — WebieApp" />
+    <meta name="twitter:description" content="Launch your clinic or home-based ABA practice: formation, credentialing, website, billing, payroll & marketing. All 50 states. Free discovery call." />
+    <meta name="twitter:image" content="https://webieapp.com/og-autism-consulting.png" />
+    <meta name="twitter:image:alt" content="WebieApp — Clinic & Home-Based ABA Therapy Consulting" />
+
+    <!-- ── Structured Data ───────────────────────────────── -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "WebieApp ABA Clinic & Home-Based Business Consulting",
+      "description": "End-to-end business consulting for Autism and ABA therapy entrepreneurs across the USA — clinic and home-based setup, branding, HIPAA-aware website, credentialing, billing, payroll, and marketing.",
+      "url": "https://webieapp.com/autism-consulting",
+      "image": "https://webieapp.com/og-autism-consulting.png",
+      "provider": {
+        "@type": "Organization",
+        "name": "WebieApp Solutions LLC",
+        "url": "https://webieapp.com",
+        "logo": "https://webieapp.com/favicon.png"
+      },
+      "serviceType": "ABA Therapy Business Consulting",
+      "areaServed": { "@type": "Country", "name": "United States" },
+      "audience": { "@type": "Audience", "audienceType": "ABA entrepreneurs, BCBAs, healthcare business owners" }
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Google Analytics (GA4: G-6RQW6Q6S95) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6RQW6Q6S95"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-6RQW6Q6S95', { send_page_view: false });
+    </script>
+
+    <!-- ⚡ NO-FLICKER theme init — runs before React hydrates -->
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('webie-theme');
+          var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme', theme);
+          if (theme === 'dark') {
+            document.documentElement.style.backgroundColor = '#111823';
+          }
+        } catch(e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
