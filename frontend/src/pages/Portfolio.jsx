@@ -252,13 +252,13 @@ const PROJECTS = [
     categories: ['NGO / Community'],
     url: 'https://wahomefoundation.com/',
   },
-  {
-    id: 27, initials: 'IH', logo: '/portfolio/logos/inharmony.png',
-    name: 'InHarmony Behavioral',
-    description: 'A holistic behavioral health platform offering ABA therapy and behavioral wellness services for children and families.',
-    categories: ['Autism & ABA', 'Mental Health'],
-    url: 'https://inharmonybehavioral.com/',
-  },
+  // {
+  //   id: 27, initials: 'IH', logo: '/portfolio/logos/inharmony.png',
+  //   name: 'InHarmony Behavioral',
+  //   description: 'A holistic behavioral health platform offering ABA therapy and behavioral wellness services for children and families.',
+  //   categories: ['Autism & ABA', 'Mental Health'],
+  //   url: 'https://inharmonybehavioral.com/',
+  // },
   {
     id: 28, initials: 'CS', logo: '/portfolio/logos/codespringfinancials.webp',
     name: 'Codespring Financials',
@@ -307,6 +307,27 @@ const PROJECTS = [
     description: 'A faith-based nonprofit platform connecting communities through ministry, outreach, and social impact programs.',
     categories: ['NGO / Community'],
     url: 'https://christvisionministries.org/',
+  },
+  {
+    id: 35, initials: 'NT', logo: '/portfolio/logos/nursingfortomorrow.png',
+    name: 'Nursing For Tomorrow',
+    description: 'A premium healthcare training institute delivering state-approved certification programs — Medication Technician, CPR/AED, BLS, and First Aid — across Maryland.',
+    categories: ['Healthcare', 'Web Platforms'],
+    url: 'https://nursingfortomorrow.com/',
+  },
+  {
+    id: 36, initials: 'AH', logo: '/portfolio/logos/autismbehavioralhealth.png',
+    name: 'Autism & Behavioral Health',
+    description: 'A compassionate behavioral health platform providing evidence-based ABA and behavioral health services for families across Delaware.',
+    categories: ['Autism & ABA', 'Healthcare'],
+    url: 'https://autismbehavioralhealths.com/',
+  },
+  {
+    id: 37, initials: 'LS', logo: '/portfolio/logos/liberiaschoolhub.png',
+    name: 'Liberia School Hub',
+    description: 'A complete 360° school management platform unifying administration, academics, attendance, student and teacher management, communication, and reporting for modern schools.',
+    categories: ['Web Platforms'],
+    url: 'https://www.liberiaschoolhub.com/',
   },
 ];
 
